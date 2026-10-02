@@ -291,6 +291,57 @@ def _():
 def _():
     # ============================================================
     # Contribuição LLM:
+    # Implementação da geração aleatória de pistas correspondente
+    # ao requisito R4, segundo a formalização e decisões discutidas
+    # no diálogo LLM do TP1.2.
+    # ============================================================
+
+    import random
+
+
+    def gerar_pistas(n, k=None, seed=None):
+        """
+        Gera um box com k células distintas escolhidas aleatoriamente.
+
+        Cada célula recebe um valor aleatório entre 1 e n^2.
+        Se k não for indicado, é usado k = n.
+        """
+
+        pistas = box(n)
+
+        if k is None:
+            k = n
+
+        total_celulas = pistas.size ** 2
+
+        if not isinstance(k, int) or k < 0 or k > total_celulas:
+            raise ValueError(
+                f"k deve ser um inteiro entre 0 e {total_celulas}."
+            )
+
+        rng = random.Random(seed)
+
+        coordenadas = [
+            (i, j)
+            for i in range(pistas.size)
+            for j in range(pistas.size)
+        ]
+
+        escolhidas = rng.sample(coordenadas, k)
+
+        for i, j in escolhidas:
+            val = rng.randint(1, pistas.size)
+            pistas.add(i, j, val)
+
+        return pistas
+
+    return (gerar_pistas,)
+
+
+@app.cell
+def _():
+    # ============================================================
+    # Contribuição LLM:
     # Testes automáticos básicos do requisito R1 (`box`).
     # ============================================================
 
@@ -468,6 +519,73 @@ def _(cube, deve_lancar_value_error, path):
 
 
     print("R2 e R3: testes concluídos com sucesso")
+    return
+
+
+@app.cell
+def _(deve_lancar_value_error, gerar_pistas):
+    # ============================================================
+    # Contribuição LLM:
+    # Testes automáticos do requisito R4 - geração aleatória
+    # e reproduzível de pistas.
+    # ============================================================
+
+    # ------------------------------------------------------------
+    # Resultado e número de pistas
+    # ------------------------------------------------------------
+
+    p1 = gerar_pistas(2, k=5, seed=123)
+
+    assert isinstance(p1, box)
+    assert len(p1.cells) == 5
+
+
+    # ------------------------------------------------------------
+    # Coordenadas e valores válidos
+    # ------------------------------------------------------------
+
+    for (i, j), val in p1.cells.items():
+        assert 0 <= i < 4
+        assert 0 <= j < 4
+        assert 1 <= val <= 4
+
+
+    # As coordenadas são distintas
+    assert len(set(p1.cells.keys())) == 5
+
+
+    # ------------------------------------------------------------
+    # Reprodutibilidade com a mesma semente
+    # ------------------------------------------------------------
+
+    p2 = gerar_pistas(2, k=5, seed=123)
+
+    assert p1.cells == p2.cells
+
+
+    # ------------------------------------------------------------
+    # Valor por omissão: k = n
+    # ------------------------------------------------------------
+
+    p_default = gerar_pistas(3, seed=123)
+
+    assert len(p_default.cells) == 3
+
+
+    # ------------------------------------------------------------
+    # Valores inválidos de k
+    # ------------------------------------------------------------
+
+    deve_lancar_value_error(
+        lambda: gerar_pistas(2, k=-1, seed=123)
+    )
+
+    deve_lancar_value_error(
+        lambda: gerar_pistas(2, k=17, seed=123)
+    )
+
+
+    print("R4: testes concluídos com sucesso")
     return
 
 

@@ -51,7 +51,7 @@
       "console": []
     },
     {
-      "id": "wiXD",
+      "id": "lEQa",
       "code_hash": "53c9f257a36e029ba89f905392120350",
       "outputs": [
         {
@@ -64,7 +64,20 @@
       "console": []
     },
     {
-      "id": "lEQa",
+      "id": "ABkw",
+      "code_hash": "a8f64107d2dc49dde0180c48ccf64c6b",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "PKri",
       "code_hash": "7f01de5756cf81e4b8141434d2aec323",
       "outputs": [
         {
@@ -84,7 +97,7 @@
       ]
     },
     {
-      "id": "kZoH",
+      "id": "Xref",
       "code_hash": "ce1d661b3e8727e439e3888a3a051f96",
       "outputs": [
         {
@@ -104,7 +117,27 @@
       ]
     },
     {
-      "id": "PKri",
+      "id": "DVLE",
+      "code_hash": "114d00979fdad9ecd3ecbfab84b32747",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "R4: testes conclu\u00eddos com sucesso\n",
+          "mimetype": "text/plain"
+        }
+      ]
+    },
+    {
+      "id": "SFPL",
       "code_hash": "97a5d6439f0aea1c8e7bbebb489895f4",
       "outputs": [
         {
