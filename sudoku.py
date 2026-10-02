@@ -5,6 +5,7 @@
 #     "ortools>=9.15",
 # ]
 # ///
+
 import marimo
 
 __generated_with = "0.25.0"
@@ -228,221 +229,6 @@ class box:
 def _():
     # ============================================================
     # Contribuição LLM:
-    # Implementação das especializações `cube` e `path`
-    # correspondentes aos requisitos R2 e R3, desenvolvida a partir
-    # da formalização discutida no diálogo LLM do TP1.2.
-    # ============================================================
-
-    class cube(box):
-        """
-        Bloco n x n de uma grelha n^2 x n^2.
-
-        (i, j) são os índices do bloco, com 0 <= i, j < n.
-        """
-
-        def __init__(self, n, i, j):
-            super().__init__(n)
-
-            if not isinstance(i, int) or not isinstance(j, int):
-                raise ValueError("Os índices do bloco devem ser inteiros.")
-
-            if not (0 <= i < n and 0 <= j < n):
-                raise ValueError("Índice de bloco fora da grelha.")
-
-            for r in range(n):
-                for c in range(n):
-                    self.add(i * n + r, j * n + c)
-
-
-    class path(box):
-        """
-        Troço horizontal ou vertical, inclusive, entre duas coordenadas.
-        """
-
-        def __init__(self, n, inicio, fim):
-            super().__init__(n)
-
-            r1, c1 = inicio
-            r2, c2 = fim
-
-            if r1 == r2:
-                # Percurso horizontal
-                passo = 1 if c2 >= c1 else -1
-
-                for c in range(c1, c2 + passo, passo):
-                    self.add(r1, c)
-
-            elif c1 == c2:
-                # Percurso vertical
-                passo = 1 if r2 >= r1 else -1
-
-                for r in range(r1, r2 + passo, passo):
-                    self.add(r, c1)
-
-            else:
-                raise ValueError(
-                    "Um path tem de ser horizontal ou vertical."
-                )
-
-    return cube, path
-
-
-@app.cell
-def _():
-    # ============================================================
-    # Contribuição LLM:
-    # Implementação da geração aleatória de pistas correspondente
-    # ao requisito R4, segundo a formalização e decisões discutidas
-    # no diálogo LLM do TP1.2.
-    # ============================================================
-
-    import random
-
-
-    def gerar_pistas(n, k=None, seed=None):
-        """
-        Gera um box com k células distintas escolhidas aleatoriamente.
-
-        Cada célula recebe um valor aleatório entre 1 e n^2.
-        Se k não for indicado, é usado k = n.
-        """
-
-        pistas = box(n)
-
-        if k is None:
-            k = n
-
-        total_celulas = pistas.size ** 2
-
-        if not isinstance(k, int) or k < 0 or k > total_celulas:
-            raise ValueError(
-                f"k deve ser um inteiro entre 0 e {total_celulas}."
-            )
-
-        rng = random.Random(seed)
-
-        coordenadas = [
-            (i, j)
-            for i in range(pistas.size)
-            for j in range(pistas.size)
-        ]
-
-        escolhidas = rng.sample(coordenadas, k)
-
-        for i, j in escolhidas:
-            val = rng.randint(1, pistas.size)
-            pistas.add(i, j, val)
-
-        return pistas
-
-    return (gerar_pistas,)
-
-
-@app.cell
-def _():
-    # ============================================================
-    # Contribuição LLM:
-    # Implementação do modelo CSP correspondente ao requisito R5,
-    # usando OR-Tools CP-SAT, a partir da formalização discutida
-    # no diálogo LLM do TP1.2.
-    # ============================================================
-
-    from ortools.sat.python import cp_model
-
-
-    class sudoku_csp:
-        """
-        Modelo CSP para uma grelha n^2 x n^2.
-        """
-
-        def __init__(self, n):
-            self.n = n
-            self.size = n ** 2
-
-            self.model = cp_model.CpModel()
-
-            # Uma variável inteira por célula, com domínio [1, n^2].
-            self.x = [
-                [
-                    self.model.NewIntVar(
-                        1,
-                        self.size,
-                        f"x_{i}_{j}"
-                    )
-                    for j in range(self.size)
-                ]
-                for i in range(self.size)
-            ]
-
-        def add_groups(self, *groups):
-            """
-            Acrescenta ao modelo um número arbitrário de grupos.
-
-            Para cada grupo:
-              - impõe AllDifferent às células pertencentes ao grupo;
-              - transforma cada valor fixo numa igualdade.
-            """
-
-            for group in groups:
-                if group.n != self.n:
-                    raise ValueError(
-                        "O grupo e o modelo devem usar o mesmo valor de n."
-                    )
-
-                variables = [
-                    self.x[i][j]
-                    for (i, j) in group.cells.keys()
-                ]
-
-                if len(variables) > 1:
-                    self.model.AddAllDifferent(variables)
-
-                for (i, j), val in group.cells.items():
-                    if val is not None:
-                        self.model.Add(
-                            self.x[i][j] == val
-                        )
-
-        def solve(self):
-            """
-            Resolve o CSP.
-
-            Devolve:
-              - uma matriz n^2 x n^2 se existir uma solução;
-              - None se o modelo for INFEASIBLE.
-
-            Outros estados do solver não são confundidos com inviabilidade.
-            """
-
-            solver = cp_model.CpSolver()
-            status = solver.Solve(self.model)
-
-            if status in (
-                cp_model.FEASIBLE,
-                cp_model.OPTIMAL
-            ):
-                return [
-                    [
-                        solver.Value(self.x[i][j])
-                        for j in range(self.size)
-                    ]
-                    for i in range(self.size)
-                ]
-
-            if status == cp_model.INFEASIBLE:
-                return None
-
-            raise RuntimeError(
-                "O solver terminou sem determinar satisfatibilidade."
-            )
-
-    return (sudoku_csp,)
-
-
-@app.cell
-def _():
-    # ============================================================
-    # Contribuição LLM:
     # Testes automáticos básicos do requisito R1 (`box`).
     # ============================================================
 
@@ -501,6 +287,69 @@ def _():
 
     print("R1: testes concluídos com sucesso")
     return (deve_lancar_value_error,)
+
+
+@app.cell
+def _():
+    # ============================================================
+    # Contribuição LLM:
+    # Implementação das especializações `cube` e `path`
+    # correspondentes aos requisitos R2 e R3, desenvolvida a partir
+    # da formalização discutida no diálogo LLM do TP1.2.
+    # ============================================================
+
+    class cube(box):
+        """
+        Bloco n x n de uma grelha n^2 x n^2.
+
+        (i, j) são os índices do bloco, com 0 <= i, j < n.
+        """
+
+        def __init__(self, n, i, j):
+            super().__init__(n)
+
+            if not isinstance(i, int) or not isinstance(j, int):
+                raise ValueError("Os índices do bloco devem ser inteiros.")
+
+            if not (0 <= i < n and 0 <= j < n):
+                raise ValueError("Índice de bloco fora da grelha.")
+
+            for r in range(n):
+                for c in range(n):
+                    self.add(i * n + r, j * n + c)
+
+
+    class path(box):
+        """
+        Troço horizontal ou vertical, inclusive, entre duas coordenadas.
+        """
+
+        def __init__(self, n, inicio, fim):
+            super().__init__(n)
+
+            r1, c1 = inicio
+            r2, c2 = fim
+
+            if r1 == r2:
+                # Percurso horizontal
+                passo = 1 if c2 >= c1 else -1
+
+                for c in range(c1, c2 + passo, passo):
+                    self.add(r1, c)
+
+            elif c1 == c2:
+                # Percurso vertical
+                passo = 1 if r2 >= r1 else -1
+
+                for r in range(r1, r2 + passo, passo):
+                    self.add(r, c1)
+
+            else:
+                raise ValueError(
+                    "Um path tem de ser horizontal ou vertical."
+                )
+
+    return cube, path
 
 
 @app.cell
@@ -624,6 +473,57 @@ def _(cube, deve_lancar_value_error, path):
 
 
 @app.cell
+def _():
+    # ============================================================
+    # Contribuição LLM:
+    # Implementação da geração aleatória de pistas correspondente
+    # ao requisito R4, segundo a formalização e decisões discutidas
+    # no diálogo LLM do TP1.2.
+    # ============================================================
+
+    import random
+
+
+    def gerar_pistas(n, k=None, seed=None):
+        """
+        Gera um box com k células distintas escolhidas aleatoriamente.
+
+        Cada célula recebe um valor aleatório entre 1 e n^2.
+        Se k não for indicado, é usado k = n.
+        """
+
+        pistas = box(n)
+
+        if k is None:
+            k = n
+
+        total_celulas = pistas.size ** 2
+
+        if not isinstance(k, int) or k < 0 or k > total_celulas:
+            raise ValueError(
+                f"k deve ser um inteiro entre 0 e {total_celulas}."
+            )
+
+        rng = random.Random(seed)
+
+        coordenadas = [
+            (i, j)
+            for i in range(pistas.size)
+            for j in range(pistas.size)
+        ]
+
+        escolhidas = rng.sample(coordenadas, k)
+
+        for i, j in escolhidas:
+            val = rng.randint(1, pistas.size)
+            pistas.add(i, j, val)
+
+        return pistas
+
+    return (gerar_pistas,)
+
+
+@app.cell
 def _(deve_lancar_value_error, gerar_pistas):
     # ============================================================
     # Contribuição LLM:
@@ -688,6 +588,107 @@ def _(deve_lancar_value_error, gerar_pistas):
 
     print("R4: testes concluídos com sucesso")
     return
+
+
+@app.cell
+def _():
+    # ============================================================
+    # Contribuição LLM:
+    # Implementação do modelo CSP correspondente ao requisito R5,
+    # usando OR-Tools CP-SAT, a partir da formalização discutida
+    # no diálogo LLM do TP1.2.
+    # ============================================================
+
+    from ortools.sat.python import cp_model
+
+
+    class sudoku_csp:
+        """
+        Modelo CSP para uma grelha n^2 x n^2.
+        """
+
+        def __init__(self, n):
+            self.n = n
+            self.size = n ** 2
+
+            self.model = cp_model.CpModel()
+
+            # Uma variável inteira por célula, com domínio [1, n^2].
+            self.x = [
+                [
+                    self.model.NewIntVar(
+                        1,
+                        self.size,
+                        f"x_{i}_{j}"
+                    )
+                    for j in range(self.size)
+                ]
+                for i in range(self.size)
+            ]
+
+        def add_groups(self, *groups):
+            """
+            Acrescenta ao modelo um número arbitrário de grupos.
+
+            Para cada grupo:
+              - impõe AllDifferent às células pertencentes ao grupo;
+              - transforma cada valor fixo numa igualdade.
+            """
+
+            for group in groups:
+                if group.n != self.n:
+                    raise ValueError(
+                        "O grupo e o modelo devem usar o mesmo valor de n."
+                    )
+
+                variables = [
+                    self.x[i][j]
+                    for (i, j) in group.cells.keys()
+                ]
+
+                if len(variables) > 1:
+                    self.model.AddAllDifferent(variables)
+
+                for (i, j), val in group.cells.items():
+                    if val is not None:
+                        self.model.Add(
+                            self.x[i][j] == val
+                        )
+
+        def solve(self):
+            """
+            Resolve o CSP.
+
+            Devolve:
+              - uma matriz n^2 x n^2 se existir uma solução;
+              - None se o modelo for INFEASIBLE.
+
+            Outros estados do solver não são confundidos com inviabilidade.
+            """
+
+            solver = cp_model.CpSolver()
+            status = solver.Solve(self.model)
+
+            if status in (
+                cp_model.FEASIBLE,
+                cp_model.OPTIMAL
+            ):
+                return [
+                    [
+                        solver.Value(self.x[i][j])
+                        for j in range(self.size)
+                    ]
+                    for i in range(self.size)
+                ]
+
+            if status == cp_model.INFEASIBLE:
+                return None
+
+            raise RuntimeError(
+                "O solver terminou sem determinar satisfatibilidade."
+            )
+
+    return (sudoku_csp,)
 
 
 @app.cell
@@ -804,6 +805,234 @@ def _(cube, deve_lancar_value_error, path, sudoku_csp):
 
 
     print("R5: testes concluídos com sucesso")
+    return
+
+
+@app.cell
+def _(cube, gerar_pistas, path, sudoku_csp):
+    # ============================================================
+    # Contribuição LLM:
+    # Implementação de R6 - construção de um Sudoku completo
+    # n^2 x n^2 através de path, cube, pistas e do modelo genérico
+    # sudoku_csp desenvolvido em R5.
+    # ============================================================
+
+    def resolver_sudoku(n, k=None, seed=None):
+        """
+        Constrói e resolve um Sudoku n^2 x n^2.
+
+        O modelo contém:
+          - todas as linhas;
+          - todas as colunas;
+          - todos os blocos n x n;
+          - um grupo de pistas aleatórias.
+
+        Devolve:
+          - a solução, ou None se o CSP for INFEASIBLE;
+          - o box de pistas usado na construção.
+        """
+
+        size = n ** 2
+
+        # Todas as linhas
+        linhas = [
+            path(n, (i, 0), (i, size - 1))
+            for i in range(size)
+        ]
+
+        # Todas as colunas
+        colunas = [
+            path(n, (0, j), (size - 1, j))
+            for j in range(size)
+        ]
+
+        # Todos os blocos n x n
+        blocos = [
+            cube(n, i, j)
+            for i in range(n)
+            for j in range(n)
+        ]
+
+        # Grupo de pistas aleatórias
+        pistas = gerar_pistas(
+            n,
+            k=k,
+            seed=seed
+        )
+
+        # Modelo CSP genérico de R5
+        modelo = sudoku_csp(n)
+
+        modelo.add_groups(
+            *(linhas + colunas + blocos + [pistas])
+        )
+
+        solucao = modelo.solve()
+
+        return solucao, pistas
+
+    return (resolver_sudoku,)
+
+
+@app.function
+# ============================================================
+# Contribuição LLM:
+# Validador independente da solução de R6.
+# Verifica diretamente dimensão, linhas, colunas, blocos
+# e preservação das pistas, sem consultar o solver.
+# ============================================================
+
+def validar_sudoku(solucao, n, pistas):
+    """
+    Verifica independentemente uma solução de Sudoku.
+
+    Devolve True apenas se:
+      - a matriz tiver dimensão n^2 x n^2;
+      - todas as linhas contiverem exatamente 1..n^2;
+      - todas as colunas contiverem exatamente 1..n^2;
+      - todos os blocos n x n contiverem exatamente 1..n^2;
+      - todas as pistas forem preservadas.
+    """
+
+    if solucao is None:
+        return False
+
+    size = n ** 2
+    valores_esperados = set(range(1, size + 1))
+
+    # --------------------------------------------------------
+    # Dimensão n^2 x n^2
+    # --------------------------------------------------------
+
+    if len(solucao) != size:
+        return False
+
+    if any(len(linha) != size for linha in solucao):
+        return False
+
+    # --------------------------------------------------------
+    # Linhas
+    # --------------------------------------------------------
+
+    for i in range(size):
+        if set(solucao[i]) != valores_esperados:
+            return False
+
+    # --------------------------------------------------------
+    # Colunas
+    # --------------------------------------------------------
+
+    for j in range(size):
+        coluna = {
+            solucao[i][j]
+            for i in range(size)
+        }
+
+        if coluna != valores_esperados:
+            return False
+
+    # --------------------------------------------------------
+    # Blocos n x n
+    # --------------------------------------------------------
+
+    for bloco_i in range(n):
+        for bloco_j in range(n):
+
+            valores_bloco = []
+
+            for di in range(n):
+                for dj in range(n):
+                    i = bloco_i * n + di
+                    j = bloco_j * n + dj
+
+                    valores_bloco.append(
+                        solucao[i][j]
+                    )
+
+            if set(valores_bloco) != valores_esperados:
+                return False
+
+    # --------------------------------------------------------
+    # Preservação das pistas
+    # --------------------------------------------------------
+
+    for (i, j), val in pistas.cells.items():
+        if val is not None:
+            if solucao[i][j] != val:
+                return False
+
+    return True
+
+
+@app.cell
+def _(resolver_sudoku):
+    # ============================================================
+    # Execução controlada de R6 para n = 2.
+    # Grelha: 4 x 4
+    # ============================================================
+
+    solucao_2, pistas_2 = resolver_sudoku(
+        n=2,
+        k=2,
+        seed=123
+    )
+
+    print("Pistas n=2:", pistas_2.cells)
+
+    if solucao_2 is None:
+        print("n=2: INFEASIBLE")
+
+    else:
+        print("Solução n=2:")
+
+        for linha_solucao_2 in solucao_2:
+            print(linha_solucao_2)
+
+        assert validar_sudoku(
+            solucao_2,
+            2,
+            pistas_2
+        )
+
+        print(
+            "n=2: validação independente concluída com sucesso"
+        )
+    return
+
+
+@app.cell
+def _(resolver_sudoku):
+    # ============================================================
+    # Execução controlada de R6 para n = 3.
+    # Grelha: 9 x 9
+    # ============================================================
+
+    solucao_3, pistas_3 = resolver_sudoku(
+        n=3,
+        k=3,
+        seed=123
+    )
+
+    print("Pistas n=3:", pistas_3.cells)
+
+    if solucao_3 is None:
+        print("n=3: INFEASIBLE")
+
+    else:
+        print("Solução n=3:")
+
+        for linha_solucao_3 in solucao_3:
+            print(linha_solucao_3)
+
+        assert validar_sudoku(
+            solucao_3,
+            3,
+            pistas_3
+        )
+
+        print(
+            "n=3: validação independente concluída com sucesso"
+        )
     return
 
 
