@@ -1,10 +1,10 @@
 # /// script
-# requires-python = ">=3.14"
+# requires-python = ">=3.10"
 # dependencies = [
 #     "marimo>=0.24.2",
+#     "ortools>=9.15",
 # ]
 # ///
-
 import marimo
 
 __generated_with = "0.25.0"
@@ -342,6 +342,107 @@ def _():
 def _():
     # ============================================================
     # Contribuição LLM:
+    # Implementação do modelo CSP correspondente ao requisito R5,
+    # usando OR-Tools CP-SAT, a partir da formalização discutida
+    # no diálogo LLM do TP1.2.
+    # ============================================================
+
+    from ortools.sat.python import cp_model
+
+
+    class sudoku_csp:
+        """
+        Modelo CSP para uma grelha n^2 x n^2.
+        """
+
+        def __init__(self, n):
+            self.n = n
+            self.size = n ** 2
+
+            self.model = cp_model.CpModel()
+
+            # Uma variável inteira por célula, com domínio [1, n^2].
+            self.x = [
+                [
+                    self.model.NewIntVar(
+                        1,
+                        self.size,
+                        f"x_{i}_{j}"
+                    )
+                    for j in range(self.size)
+                ]
+                for i in range(self.size)
+            ]
+
+        def add_groups(self, *groups):
+            """
+            Acrescenta ao modelo um número arbitrário de grupos.
+
+            Para cada grupo:
+              - impõe AllDifferent às células pertencentes ao grupo;
+              - transforma cada valor fixo numa igualdade.
+            """
+
+            for group in groups:
+                if group.n != self.n:
+                    raise ValueError(
+                        "O grupo e o modelo devem usar o mesmo valor de n."
+                    )
+
+                variables = [
+                    self.x[i][j]
+                    for (i, j) in group.cells.keys()
+                ]
+
+                if len(variables) > 1:
+                    self.model.AddAllDifferent(variables)
+
+                for (i, j), val in group.cells.items():
+                    if val is not None:
+                        self.model.Add(
+                            self.x[i][j] == val
+                        )
+
+        def solve(self):
+            """
+            Resolve o CSP.
+
+            Devolve:
+              - uma matriz n^2 x n^2 se existir uma solução;
+              - None se o modelo for INFEASIBLE.
+
+            Outros estados do solver não são confundidos com inviabilidade.
+            """
+
+            solver = cp_model.CpSolver()
+            status = solver.Solve(self.model)
+
+            if status in (
+                cp_model.FEASIBLE,
+                cp_model.OPTIMAL
+            ):
+                return [
+                    [
+                        solver.Value(self.x[i][j])
+                        for j in range(self.size)
+                    ]
+                    for i in range(self.size)
+                ]
+
+            if status == cp_model.INFEASIBLE:
+                return None
+
+            raise RuntimeError(
+                "O solver terminou sem determinar satisfatibilidade."
+            )
+
+    return (sudoku_csp,)
+
+
+@app.cell
+def _():
+    # ============================================================
+    # Contribuição LLM:
     # Testes automáticos básicos do requisito R1 (`box`).
     # ============================================================
 
@@ -586,6 +687,123 @@ def _(deve_lancar_value_error, gerar_pistas):
 
 
     print("R4: testes concluídos com sucesso")
+    return
+
+
+@app.cell
+def _(cube, deve_lancar_value_error, path, sudoku_csp):
+    # ============================================================
+    # Contribuição LLM:
+    # Testes automáticos do requisito R5:
+    # solução matricial, AllDifferent, valores fixos,
+    # grupos arbitrários, incompatibilidade de n e inviabilidade.
+    # ============================================================
+
+
+    # ------------------------------------------------------------
+    # 1. Caso satisfazível
+    # ------------------------------------------------------------
+
+    csp = sudoku_csp(2)
+
+    # Três grupos de origens diferentes:
+    # path, cube e box de pistas.
+    linha = path(2, (0, 0), (0, 3))
+    bloco = cube(2, 0, 0)
+
+    pistas = box(2, {
+        (0, 0): 1,
+        (1, 0): 2
+    })
+
+    # O modelo recebe todos da mesma forma.
+    csp.add_groups(linha, bloco, pistas)
+
+    solucao = csp.solve()
+
+
+    # Deve existir uma solução.
+    assert solucao is not None
+
+
+    # A solução devolvida deve ser uma matriz 4 x 4.
+    assert isinstance(solucao, list)
+    assert len(solucao) == 4
+    assert all(isinstance(row, list) for row in solucao)
+    assert all(len(row) == 4 for row in solucao)
+
+
+    # ------------------------------------------------------------
+    # 2. AllDifferent
+    # ------------------------------------------------------------
+
+    # A primeira linha pertence ao grupo `linha`, que contém
+    # exatamente quatro variáveis com domínio {1, 2, 3, 4}.
+    assert set(solucao[0]) == {1, 2, 3, 4}
+
+
+    # O bloco superior esquerdo também recebeu AllDifferent.
+    valores_bloco = [
+        solucao[0][0],
+        solucao[0][1],
+        solucao[1][0],
+        solucao[1][1]
+    ]
+
+    assert len(set(valores_bloco)) == 4
+
+
+    # ------------------------------------------------------------
+    # 3. Valores fixos preservados
+    # ------------------------------------------------------------
+
+    assert solucao[0][0] == 1
+    assert solucao[1][0] == 2
+
+
+    # ------------------------------------------------------------
+    # 4. Grupo com n incompatível
+    # ------------------------------------------------------------
+
+    grupo_incompativel = box(3)
+
+    deve_lancar_value_error(
+        lambda: csp.add_groups(grupo_incompativel)
+    )
+
+
+    # ------------------------------------------------------------
+    # 5. CSP deliberadamente contraditório
+    # ------------------------------------------------------------
+
+    csp_inviavel = sudoku_csp(2)
+
+    linha_inviavel = path(
+        2,
+        (0, 0),
+        (0, 3)
+    )
+
+    # AllDifferent exige que estas duas células tenham valores
+    # distintos, mas as pistas fixam ambas ao valor 1.
+    pistas_incompativeis = box(2, {
+        (0, 0): 1,
+        (0, 1): 1
+    })
+
+    csp_inviavel.add_groups(
+        linha_inviavel,
+        pistas_incompativeis
+    )
+
+    resultado_inviavel = csp_inviavel.solve()
+
+    # solve() só devolve None quando o estado é INFEASIBLE.
+    # Qualquer outro estado originaria RuntimeError.
+    assert resultado_inviavel is None
+
+
+    print("R5: testes concluídos com sucesso")
     return
 
 

@@ -2,7 +2,7 @@
   "version": "1",
   "metadata": {
     "marimo_version": "0.25.0",
-    "script_metadata_hash": "00441117d6719522e397cdcec4393ea1"
+    "script_metadata_hash": "e3d3a335ff535bfb2a225ae1eed3bc73"
   },
   "cells": [
     {
@@ -64,8 +64,14 @@
       "console": []
     },
     {
-      "id": "ABkw",
+      "id": "PKri",
       "code_hash": "a8f64107d2dc49dde0180c48ccf64c6b",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "Xref",
+      "code_hash": "c57e633736748382f61633480b4fe111",
       "outputs": [
         {
           "type": "data",
@@ -77,7 +83,7 @@
       "console": []
     },
     {
-      "id": "PKri",
+      "id": "SFPL",
       "code_hash": "7f01de5756cf81e4b8141434d2aec323",
       "outputs": [
         {
@@ -97,28 +103,20 @@
       ]
     },
     {
-      "id": "Xref",
+      "id": "BYtC",
       "code_hash": "ce1d661b3e8727e439e3888a3a051f96",
-      "outputs": [
-        {
-          "type": "data",
-          "data": {
-            "text/plain": ""
-          }
-        }
-      ],
-      "console": [
-        {
-          "type": "stream",
-          "name": "stdout",
-          "text": "R2 e R3: testes conclu\u00eddos com sucesso\n",
-          "mimetype": "text/plain"
-        }
-      ]
+      "outputs": [],
+      "console": []
     },
     {
-      "id": "DVLE",
+      "id": "RGSE",
       "code_hash": "114d00979fdad9ecd3ecbfab84b32747",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "Kclp",
+      "code_hash": "84898866e6914da016ba7d78c6304b92",
       "outputs": [
         {
           "type": "data",
@@ -131,13 +129,13 @@
         {
           "type": "stream",
           "name": "stdout",
-          "text": "R4: testes conclu\u00eddos com sucesso\n",
+          "text": "R5: testes conclu\u00eddos com sucesso\n",
           "mimetype": "text/plain"
         }
       ]
     },
     {
-      "id": "SFPL",
+      "id": "emfo",
       "code_hash": "97a5d6439f0aea1c8e7bbebb489895f4",
       "outputs": [
         {
