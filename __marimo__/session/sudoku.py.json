@@ -38,7 +38,7 @@
       "console": []
     },
     {
-      "id": "RJva",
+      "id": "bkHC",
       "code_hash": "eef7d8db1ac79dd082003fefcffc27e5",
       "outputs": [
         {
@@ -51,7 +51,20 @@
       "console": []
     },
     {
-      "id": "nIdX",
+      "id": "wiXD",
+      "code_hash": "53c9f257a36e029ba89f905392120350",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "lEQa",
       "code_hash": "7f01de5756cf81e4b8141434d2aec323",
       "outputs": [
         {
@@ -71,7 +84,27 @@
       ]
     },
     {
-      "id": "bkHC",
+      "id": "kZoH",
+      "code_hash": "ce1d661b3e8727e439e3888a3a051f96",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "R2 e R3: testes conclu\u00eddos com sucesso\n",
+          "mimetype": "text/plain"
+        }
+      ]
+    },
+    {
+      "id": "PKri",
       "code_hash": "97a5d6439f0aea1c8e7bbebb489895f4",
       "outputs": [
         {

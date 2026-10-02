@@ -228,6 +228,69 @@ class box:
 def _():
     # ============================================================
     # Contribuição LLM:
+    # Implementação das especializações `cube` e `path`
+    # correspondentes aos requisitos R2 e R3, desenvolvida a partir
+    # da formalização discutida no diálogo LLM do TP1.2.
+    # ============================================================
+
+    class cube(box):
+        """
+        Bloco n x n de uma grelha n^2 x n^2.
+
+        (i, j) são os índices do bloco, com 0 <= i, j < n.
+        """
+
+        def __init__(self, n, i, j):
+            super().__init__(n)
+
+            if not isinstance(i, int) or not isinstance(j, int):
+                raise ValueError("Os índices do bloco devem ser inteiros.")
+
+            if not (0 <= i < n and 0 <= j < n):
+                raise ValueError("Índice de bloco fora da grelha.")
+
+            for r in range(n):
+                for c in range(n):
+                    self.add(i * n + r, j * n + c)
+
+
+    class path(box):
+        """
+        Troço horizontal ou vertical, inclusive, entre duas coordenadas.
+        """
+
+        def __init__(self, n, inicio, fim):
+            super().__init__(n)
+
+            r1, c1 = inicio
+            r2, c2 = fim
+
+            if r1 == r2:
+                # Percurso horizontal
+                passo = 1 if c2 >= c1 else -1
+
+                for c in range(c1, c2 + passo, passo):
+                    self.add(r1, c)
+
+            elif c1 == c2:
+                # Percurso vertical
+                passo = 1 if r2 >= r1 else -1
+
+                for r in range(r1, r2 + passo, passo):
+                    self.add(r, c1)
+
+            else:
+                raise ValueError(
+                    "Um path tem de ser horizontal ou vertical."
+                )
+
+    return cube, path
+
+
+@app.cell
+def _():
+    # ============================================================
+    # Contribuição LLM:
     # Testes automáticos básicos do requisito R1 (`box`).
     # ============================================================
 
@@ -285,6 +348,126 @@ def _():
     deve_lancar_value_error(lambda: b.add(0, 1))
 
     print("R1: testes concluídos com sucesso")
+    return (deve_lancar_value_error,)
+
+
+@app.cell
+def _(cube, deve_lancar_value_error, path):
+    # ============================================================
+    # Contribuição LLM:
+    # Testes automáticos dos requisitos R2 (`cube`) e R3 (`path`).
+    # Reutiliza `deve_lancar_value_error`, definida nos testes de R1.
+    # ============================================================
+
+
+    # ------------------------------------------------------------
+    # R2 - cube
+    # ------------------------------------------------------------
+
+    # Bloco superior direito numa grelha 4 x 4
+    c1 = cube(2, 0, 1)
+
+    assert isinstance(c1, box)
+
+    assert set(c1.cells.keys()) == {
+        (0, 2), (0, 3),
+        (1, 2), (1, 3)
+    }
+
+    assert all(val is None for val in c1.cells.values())
+    assert len(c1.cells) == 4
+
+
+    # Outro bloco: inferior direito
+    c2 = cube(2, 1, 1)
+
+    assert set(c2.cells.keys()) == {
+        (2, 2), (2, 3),
+        (3, 2), (3, 3)
+    }
+
+
+    # Índices de bloco inválidos
+    deve_lancar_value_error(lambda: cube(2, -1, 0))
+    deve_lancar_value_error(lambda: cube(2, 2, 0))
+    deve_lancar_value_error(lambda: cube(2, 0, 2))
+
+
+    # ------------------------------------------------------------
+    # R3 - path
+    # ------------------------------------------------------------
+
+    # Horizontal crescente
+    p1 = path(2, (1, 0), (1, 3))
+
+    assert isinstance(p1, box)
+
+    assert set(p1.cells.keys()) == {
+        (1, 0),
+        (1, 1),
+        (1, 2),
+        (1, 3)
+    }
+
+
+    # Horizontal decrescente
+    p2 = path(2, (1, 3), (1, 0))
+
+    assert set(p2.cells.keys()) == {
+        (1, 0),
+        (1, 1),
+        (1, 2),
+        (1, 3)
+    }
+
+
+    # Vertical crescente
+    p3 = path(2, (0, 2), (3, 2))
+
+    assert set(p3.cells.keys()) == {
+        (0, 2),
+        (1, 2),
+        (2, 2),
+        (3, 2)
+    }
+
+
+    # Vertical decrescente
+    p4 = path(2, (3, 2), (0, 2))
+
+    assert set(p4.cells.keys()) == {
+        (0, 2),
+        (1, 2),
+        (2, 2),
+        (3, 2)
+    }
+
+
+    # inicio == fim
+    p5 = path(2, (2, 2), (2, 2))
+
+    assert set(p5.cells.keys()) == {
+        (2, 2)
+    }
+
+
+    # Percurso que não é horizontal nem vertical
+    deve_lancar_value_error(
+        lambda: path(2, (0, 0), (2, 2))
+    )
+
+
+    # Coordenadas fora da grelha
+    deve_lancar_value_error(
+        lambda: path(2, (0, 0), (0, 4))
+    )
+
+    deve_lancar_value_error(
+        lambda: path(2, (-1, 1), (2, 1))
+    )
+
+
+    print("R2 e R3: testes concluídos com sucesso")
     return
 
 
