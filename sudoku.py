@@ -1,8 +1,8 @@
 # /// script
-# requires-python = ">=3.10"
+# requires-python = ">=3.14"
 # dependencies = [
-#     "marimo>=0.24.2",
-#     "ortools>=9.15",
+#     "marimo==0.25.0",
+#     "ortools==9.15.6755",
 # ]
 # ///
 
@@ -143,6 +143,197 @@ def _(mo):
     - **R6.** Um Sudoku $n^2 \times n^2$ completo é montado juntando:
       todas as linhas, todas as colunas, todos os blocos $n \times n$
       e (pelo menos) um grupo de pistas aleatórias — e resolvido.
+    """)
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"""
+    ## Como testar/validar
+
+    O teu notebook (ou um ficheiro de testes à parte) tem de verificar
+    automaticamente, para uma grelha resolvida:
+
+    - que cada linha, cada coluna e cada bloco $n \times n$ contém
+      exatamente os valores $1 \ldots n^2$, sem repetições;
+    - que as células fixadas pelas pistas aleatórias mantêm, na
+      solução, o valor com que foram fixadas;
+    - que `add` (ou equivalente) rejeita coordenadas fora da grelha e
+      valores fora de $[1, n^2]$.
+
+    Corre o fluxo completo (gerar pistas aleatórias → montar linhas +
+    colunas + blocos + pistas → resolver → validar) pelo menos uma vez
+    com $n=3$ (Sudoku clássico $9\times9$) e confirma que também
+    funciona com outro valor de $n$ (ex.: $n=2$, grelha $4\times4$),
+    para garantires que nada está fixo a $9\times9$ no teu código.
+
+    ## O que é deixado ao teu critério
+
+    O enunciado define **que abstrações** o notebook tem de expor e
+    **que comportamento** têm de ter, não **como** as deves
+    implementar. Ficam ao teu critério, desde que justificadas no
+    notebook:
+
+    - a técnica e biblioteca de resolução do CSP (CP-SAT do OR-Tools
+      é a sugestão da disciplina, mas és livre de escolher outra
+      abordagem de Lógica Computacional, justificando a escolha);
+    - a estrutura de dados interna do grupo genérico (dicionário,
+      matriz esparsa, etc.);
+    - a forma de apresentar a grelha resultante (texto, tabela,
+      `mo.ui`, gráfico — o que achares mais claro);
+    - o comportamento exato quando o puzzle gerado aleatoriamente não
+      tem solução (podes, por exemplo, tentar novas pistas aleatórias
+      até obteres um puzzle solúvel, ou simplesmente reportar o
+      insucesso — justifica a escolha).
+
+
+
+    ## Extensões opcionais (bónus)
+
+    A generalidade do `box` é o que torna estas extensões possíveis
+    sem tocar no modelo CSP em si — cada uma acrescenta apenas **novos
+    grupos** de células:
+
+    - **Sudoku diagonal (X-Sudoku)**: acrescenta um grupo (`box`, sem
+      precisar de nova subclasse) para cada uma das duas diagonais
+      principais, também elas restritas a "todos diferentes".
+    - **Sudoku irregular (jigsaw)**: substitui os blocos $n \times n$
+      regulares por regiões de forma arbitrária mas do mesmo tamanho,
+      cada uma representada como um `box` construído célula a célula
+      em vez de por `cube`.
+    - **Hyper-Sudoku / Windoku**: acrescenta 4 blocos extra (também
+      `box`, de forma semelhante a `cube` mas sem estarem alinhados
+      com a grelha $n \times n$ de blocos) sobrepostos aos existentes.
+    - **Escala**: mostra que o teu código funciona (talvez mais devagar)
+      para $n=6$ (grelha $36\times36$) sem alterações, e discute os
+      limites de desempenho que encontraste.
+    - **Sudoku tridimensional** define a estrutura de "boxes" numa grelha $n^2\times n^2\times n^2$.
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    # Solução desenvolvida
+
+    A partir deste ponto apresenta-se a formulação, implementação e validação adotadas pelo grupo para satisfazer os requisitos R1–R6 do enunciado.
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    ## Formulação adotada
+
+    Seja \(n \geq 1\) e seja
+
+    \[
+    N = n^2
+    \]
+
+    a dimensão da grelha. As posições possíveis são
+
+    \[
+    G = \{0,\ldots,N-1\}\times\{0,\ldots,N-1\}.
+    \]
+
+    ### R1 — grupo genérico de células
+
+    Um `box` representa um subconjunto \(B \subseteq G\). Cada célula pertencente ao grupo está associada a um valor
+
+    \[
+    v(i,j) \in \{1,\ldots,N\}\cup\{\texttt{None}\}.
+    \]
+
+    `None` significa que a célula pertence ao grupo mas não está fixada; um inteiro significa que essa célula está fixada a esse valor.
+
+    ### R2 — blocos
+
+    Para índices \(a,b\), com \(0 \leq a,b < n\), o bloco `cube(n,a,b)` contém
+
+    \[
+    C_{a,b}
+    =
+    \{(a\cdot n+r,\ b\cdot n+c)
+    \mid 0\leq r,c<n\}.
+    \]
+
+    Assim, cada bloco contém exatamente \(n^2\) células.
+
+    ### R3 — linhas e colunas
+
+    Um `path` representa todas as células de um percurso horizontal ou vertical entre duas coordenadas, incluindo as duas extremidades. O percurso pode ser feito em qualquer dos sentidos.
+
+    ### R4 — pistas aleatórias
+
+    É escolhido um conjunto de \(k\) células distintas
+
+    \[
+    P \subseteq G
+    \]
+
+    e, para cada \((i,j)\in P\), é escolhido um valor aleatório
+
+    \[
+    v_{i,j}\in\{1,\ldots,N\}.
+    \]
+
+    As pistas são representadas através da mesma abstração `box`.
+
+    ### R5 — modelo CSP
+
+    Para cada célula da grelha é criada uma variável inteira
+
+    \[
+    x_{i,j}\in\{1,\ldots,N\}.
+    \]
+
+    Para cada grupo \(B\) fornecido ao modelo é imposta a restrição
+
+    \[
+    \operatorname{AllDifferent}
+    \left(
+    \{x_{i,j}\mid(i,j)\in B\}
+    \right).
+    \]
+
+    Se uma célula do grupo tiver um valor fixo \(v\), é ainda acrescentada a igualdade
+
+    \[
+    x_{i,j}=v.
+    \]
+
+    O modelo recebe todos os grupos da mesma forma, independentemente de terem sido construídos por `box`, `cube`, `path` ou pela geração aleatória de pistas.
+
+    ### R6 — Sudoku completo
+
+    Um Sudoku completo é construído reunindo:
+
+    - todas as \(N\) linhas;
+    - todas as \(N\) colunas;
+    - todos os \(n^2\) blocos;
+    - pelo menos um grupo de pistas.
+
+    O problema é de satisfação: não existe função objetivo. Pretende-se encontrar uma atribuição que satisfaça todas as restrições ou sinalizar que o conjunto de restrições é inviável.
+
+    Para a implementação foi utilizado OR-Tools CP-SAT, seguindo a sugestão do enunciado para a resolução do CSP.
+
+    ### Decisões de implementação
+
+    Para concretizar esta formulação foram adotadas as seguintes decisões:
+
+    - `box` utiliza internamente um dicionário `(linha, coluna) → valor ou None`, por corresponder diretamente à associação definida no enunciado;
+    - `n` é passado explicitamente a cada grupo, evitando depender de uma dimensão global;
+    - tentar adicionar novamente uma coordenada ao mesmo `box` é tratado como erro através de `ValueError`;
+    - um `path` com início igual ao fim é aceite como um percurso de uma única célula, enquanto percursos não horizontais nem verticais são rejeitados;
+    - na geração aleatória de pistas é usado `k = n` por omissão e é possível fornecer uma `seed` para tornar as experiências reproduzíveis;
+    - se as pistas aleatórias originarem um CSP inviável, o programa reporta `INFEASIBLE` em vez de gerar silenciosamente novas pistas;
+    - foi utilizado OR-Tools CP-SAT por suportar diretamente variáveis inteiras com domínio finito e a restrição `AllDifferent`, adequada à formulação CSP deste problema.
+
+    Estas opções são decisões de implementação do grupo e não requisitos adicionais do enunciado.
     """)
     return
 
@@ -1257,68 +1448,204 @@ def _(resolver_sudoku):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    ## Como testar/validar
+    ### Resultados e análise
 
-    O teu notebook (ou um ficheiro de testes à parte) tem de verificar
-    automaticamente, para uma grelha resolvida:
+    Foi realizada uma experiência simples de eficiência e escala para `n = 2`, `n = 3` e `n = 4`. Em cada dimensão foram efetuadas três execuções, usando `k = n` e as sementes determinísticas `100`, `101` e `102`.
 
-    - que cada linha, cada coluna e cada bloco $n \times n$ contém
-      exatamente os valores $1 \ldots n^2$, sem repetições;
-    - que as células fixadas pelas pistas aleatórias mantêm, na
-      solução, o valor com que foram fixadas;
-    - que `add` (ou equivalente) rejeita coordenadas fora da grelha e
-      valores fora de $[1, n^2]$.
+    Estas escolhas correspondem a uma decisão metodológica do grupo para ilustrar o comportamento da implementação e não a um requisito específico do enunciado.
 
-    Corre o fluxo completo (gerar pistas aleatórias → montar linhas +
-    colunas + blocos + pistas → resolver → validar) pelo menos uma vez
-    com $n=3$ (Sudoku clássico $9\times9$) e confirma que também
-    funciona com outro valor de $n$ (ex.: $n=2$, grelha $4\times4$),
-    para garantires que nada está fixo a $9\times9$ no teu código.
+    O tempo foi medido com `time.perf_counter()` apenas em torno da chamada a `resolver_sudoku()`. A validação da solução através de `validar_sudoku()` foi realizada depois da medição e, por isso, não está incluída nos tempos apresentados.
 
-    ## O que é deixado ao teu critério
+    ### Resultados observados
 
-    O enunciado define **que abstrações** o notebook tem de expor e
-    **que comportamento** têm de ter, não **como** as deves
-    implementar. Ficam ao teu critério, desde que justificadas no
-    notebook:
+    | n | Grelha | Seed | Tempo (s) | Estado | Validação |
+    |---:|:---:|---:|---:|:---:|:---:|
+    | 2 | 4×4 | 100 | 0.046232 | SOLUÇÃO | True |
+    | 2 | 4×4 | 101 | 0.014087 | SOLUÇÃO | True |
+    | 2 | 4×4 | 102 | 0.014658 | SOLUÇÃO | True |
+    | 3 | 9×9 | 100 | 0.001457 | INFEASIBLE | — |
+    | 3 | 9×9 | 101 | 0.056548 | SOLUÇÃO | True |
+    | 3 | 9×9 | 102 | 0.003360 | INFEASIBLE | — |
+    | 4 | 16×16 | 100 | 0.693161 | SOLUÇÃO | True |
+    | 4 | 16×16 | 101 | 0.751007 | SOLUÇÃO | True |
+    | 4 | 16×16 | 102 | 0.668193 | SOLUÇÃO | True |
 
-    - a técnica e biblioteca de resolução do CSP (CP-SAT do OR-Tools
-      é a sugestão da disciplina, mas és livre de escolher outra
-      abordagem de Lógica Computacional, justificando a escolha);
-    - a estrutura de dados interna do grupo genérico (dicionário,
-      matriz esparsa, etc.);
-    - a forma de apresentar a grelha resultante (texto, tabela,
-      `mo.ui`, gráfico — o que achares mais claro);
-    - o comportamento exato quando o puzzle gerado aleatoriamente não
-      tem solução (podes, por exemplo, tentar novas pistas aleatórias
-      até obteres um puzzle solúvel, ou simplesmente reportar o
-      insucesso — justifica a escolha).
+    ### Resumo por dimensão
+
+    | n | Grelha | Execuções | Média (s) | Mínimo (s) | Máximo (s) | SOLUÇÃO | INFEASIBLE |
+    |---:|:---:|---:|---:|---:|---:|---:|---:|
+    | 2 | 4×4 | 3 | 0.024992 | 0.014087 | 0.046232 | 3 | 0 |
+    | 3 | 9×9 | 3 | 0.020455 | 0.001457 | 0.056548 | 1 | 2 |
+    | 4 | 16×16 | 3 | 0.704120 | 0.668193 | 0.751007 | 3 | 0 |
+
+    ### Observações dos dados
+
+    Para `n = 2`, as três instâncias tiveram solução e foram validadas independentemente. Os tempos observados variaram entre 0.014087 s e 0.046232 s.
+
+    Para `n = 3`, apenas a instância com `seed = 101` teve solução, demorando 0.056548 s. As instâncias com `seed = 100` e `seed = 102` foram declaradas `INFEASIBLE` e terminaram em 0.001457 s e 0.003360 s, respetivamente.
+
+    Para `n = 4`, as três instâncias tiveram solução e foram validadas, com tempos entre 0.668193 s e 0.751007 s.
+
+    ### Interpretação
+
+    A média obtida para `n = 3` não deve ser comparada diretamente com as médias de `n = 2` e `n = 4`, uma vez que duas das três instâncias foram `INFEASIBLE` e terminaram muito rapidamente.
+
+    Nas instâncias satisfazíveis observadas, as execuções para `n = 4` foram mais demoradas do que as execuções satisfazíveis realizadas para `n = 2` e `n = 3`.
+
+    A variabilidade observada entre as execuções sugere que o tempo de resolução pode depender não apenas da dimensão da grelha, mas também das restrições concretas introduzidas pelas pistas.
+
+    No entanto, foram utilizadas apenas três sementes por dimensão. Estes resultados caracterizam apenas as instâncias efetivamente executadas e não permitem estabelecer conclusões gerais sobre a complexidade do problema nem extrapolar o desempenho para dimensões não experimentadas.
+    """)
+    return
 
 
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    ## Limitações
 
-    ## Extensões opcionais (bónus)
+    A geração de pistas atribui posições e valores aleatoriamente sem garantir antecipadamente que o conjunto resultante seja compatível com algum Sudoku. Por decisão de implementação do grupo, quando as pistas tornam o CSP inviável, o solver reporta `INFEASIBLE` e não são geradas automaticamente novas pistas.
 
-    A generalidade do `box` é o que torna estas extensões possíveis
-    sem tocar no modelo CSP em si — cada uma acrescenta apenas **novos
-    grupos** de células:
+    O modelo procura uma solução que satisfaça todas as restrições, mas não verifica a unicidade dessa solução. Assim, uma instância pode admitir várias soluções válidas, sendo devolvida uma solução encontrada pelo solver.
 
-    - **Sudoku diagonal (X-Sudoku)**: acrescenta um grupo (`box`, sem
-      precisar de nova subclasse) para cada uma das duas diagonais
-      principais, também elas restritas a "todos diferentes".
-    - **Sudoku irregular (jigsaw)**: substitui os blocos $n \times n$
-      regulares por regiões de forma arbitrária mas do mesmo tamanho,
-      cada uma representada como um `box` construído célula a célula
-      em vez de por `cube`.
-    - **Hyper-Sudoku / Windoku**: acrescenta 4 blocos extra (também
-      `box`, de forma semelhante a `cube` mas sem estarem alinhados
-      com a grelha $n \times n$ de blocos) sobrepostos aos existentes.
-    - **Escala**: mostra que o teu código funciona (talvez mais devagar)
-      para $n=6$ (grelha $36\times36$) sem alterações, e discute os
-      limites de desempenho que encontraste.
-    - **Sudoku tridimensional** define a estrutura de "boxes" numa grelha $n^2\times n^2\times n^2$.
+    A experiência de desempenho foi limitada a `n = 2`, `n = 3` e `n = 4`, com `k = n` e três sementes por dimensão (`100`, `101` e `102`).
+
+    Consequentemente, os tempos apresentados dizem respeito apenas às instâncias executadas e não devem ser extrapolados para dimensões ou configurações que não foram experimentadas.
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    ## Reprodutibilidade
+
+    O ambiente utilizado no desenvolvimento e nas execuções finais foi:
+
+    - Python 3.14.7
+    - Marimo 0.25.0
+    - OR-Tools 9.15.6755
+
+    O cabeçalho do notebook mantém o requisito original:
+
+    `requires-python = ">=3.14"`
+
+    e declara explicitamente as dependências utilizadas:
+
+    - `marimo==0.25.0`
+    - `ortools==9.15.6755`
+
+    Durante o desenvolvimento foi necessário corrigir a configuração das dependências. O problema ficou resolvido depois de declarar explicitamente `ortools` nas dependências do notebook, mantendo o requisito original `requires-python >= 3.14`.
+
+    A aleatoriedade da geração de pistas pode ser controlada através do parâmetro `seed`.
+
+    As execuções controladas de R6 utilizaram:
+
+    - `n = 2`, `k = 2`, `seed = 123`;
+    - `n = 3`, `k = 3`, `seed = 123`.
+
+    A experiência de eficiência e escala utilizou:
+
+    - `n = 2`, `n = 3` e `n = 4`;
+    - `k = n`;
+    - sementes `100`, `101` e `102`;
+    - três execuções por dimensão.
+
+    As soluções obtidas são verificadas através de `validar_sudoku()`, um validador independente do solver que verifica a dimensão da matriz, todas as linhas, todas as colunas, todos os blocos e a preservação das pistas fixadas.
+    """)
+    return
+
+
+@app.cell
+def _():
+    # ============================================================
+    # Registo do ambiente utilizado na execução final.
+    # ============================================================
+
+    def registar_ambiente():
+        import sys
+        import marimo
+        import ortools
+
+        print("AMBIENTE DE EXECUÇÃO")
+        print("-" * 50)
+        print(f"Python: {sys.version}")
+        print(f"Marimo: {marimo.__version__}")
+        print(f"OR-Tools: {ortools.__version__}")
+
+
+    registar_ambiente()
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    ## Matriz final de rastreabilidade
+
+    A tabela seguinte relaciona cada requisito com a implementação correspondente e com a evidência de teste efetivamente executada.
+
+    | Requisito | Implementação | Evidência real de teste | Estado |
+    |---|---|---|---|
+    | **R1 — grupo genérico** | `box`, `add()`, `to_matrix()` | Criação vazia; construtor com células iniciais; célula livre; célula fixa; representação matricial; coordenadas inválidas; valores inválidos; coordenada duplicada | Implementado e testado |
+    | **R2 — blocos** | `cube` | Construção de blocos diferentes e rejeição de índices de bloco inválidos | Implementado e testado |
+    | **R3 — percursos** | `path` | Horizontal crescente e decrescente; vertical crescente e decrescente; `inicio == fim`; percurso não horizontal/vertical; coordenadas fora da grelha | Implementado e testado |
+    | **R4 — pistas aleatórias** | `gerar_pistas()` | Resultado do tipo `box`; número de pistas; coordenadas e valores válidos; reprodução com a mesma seed; valor por omissão; valores inválidos de `k`; `k = 0`; `k = n^4` para `n = 2`, cobrindo exatamente as 16 células | Implementado e testado |
+    | **R5 — modelo CSP** | `sudoku_csp`, `add_groups()`, `solve()` | Caso satisfazível; solução devolvida como matriz; `AllDifferent`; preservação de valores fixos; grupos de diferentes tipos tratados uniformemente; grupo com `n` incompatível rejeitado; CSP contraditório devolvendo `None` após `INFEASIBLE` | Implementado e testado |
+    | **R6 — Sudoku completo** | `resolver_sudoku()` e `validar_sudoku()` | Fluxo completo executado para `n = 2` e `n = 3`; validação independente de linhas, colunas, blocos e pistas; teste negativo em que uma solução foi deliberadamente corrompida e rejeitada pelo validador | Implementado e validado |
+    | **Eficiência e escala** | Experiência com `time.perf_counter()` | Nove execuções: `n = 2, 3, 4`, três sementes por dimensão, com registo de tempo, estado e validação | Executado e documentado |
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    ## Utilização e contribuição da LLM
+
+    Foram utilizadas ferramentas LLM como apoio à interpretação dos requisitos, formalização, implementação, criação de testes, análise dos resultados e organização da documentação.
+
+    As componentes substanciais propostas com apoio da LLM encontram-se identificadas através de comentários no código e são resumidas na tabela seguinte.
+
+    | Componente | Contribuição da LLM | Contribuição do grupo |
+    |---|---|---|
+    | Interpretação e formalização de R1–R6 | Organização dos requisitos, definição das variáveis, restrições e correspondência entre requisitos e implementação | Revisão das propostas, discussão das decisões e aprovação da modelação |
+    | `box` | Proposta inicial da implementação e dos testes de R1 | Definição das decisões de implementação, integração no Marimo e execução dos testes |
+    | `cube` e `path` | Proposta inicial das implementações e baterias de testes de R2 e R3 | Revisão, integração e execução dos testes |
+    | Geração de pistas | Proposta de `gerar_pistas()` e testes de R4 | Decisões sobre reprodução por seed e comportamento perante inviabilidade; integração e execução |
+    | Modelo CP-SAT | Formalização e proposta da implementação de `sudoku_csp`, `add_groups()` e `solve()` | Escolha e confirmação do OR-Tools CP-SAT, integração, configuração do ambiente e execução dos testes |
+    | Construção do Sudoku | Proposta de `resolver_sudoku()` | Integração no notebook e execução do fluxo completo |
+    | Validação independente | Proposta de `validar_sudoku()` | Execução da validação sobre as soluções reais e teste negativo com solução deliberadamente corrompida |
+    | Testes adicionais | Proposta dos testes limite `k = 0`, `k = n^4` e teste negativo do validador | Execução e confirmação dos resultados reais |
+    | Eficiência e escala | Proposta da metodologia e do código de medição com `time.perf_counter()` | Escolha dos parâmetros da experiência, execução das nove instâncias e fornecimento dos tempos reais |
+    | Análise e documentação | Apoio à organização da análise de desempenho, limitações, reprodutibilidade, rastreabilidade e conclusão | Revisão final do conteúdo e responsabilidade pelos resultados efetivamente apresentados |
+
+    O grupo integrou o código no notebook Marimo, tomou as decisões de implementação, resolveu os problemas de configuração do ambiente e de organização das células, executou todos os testes e experiências e forneceu os resultados reais utilizados neste relatório.
+
+    ### Diálogos LLM
+
+    Diálogo principal utilizado no desenvolvimento do TP1.2 — Sudoku:
+
+    **https://chatgpt.com/share/6ac12d98-2ef8-83ed-969a-449c71987c2c**
+    """)
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    ## Conclusão
+
+    Neste exercício foi modelado um Sudoku genérico \(n^2 \times n^2\) como um problema de satisfação de restrições.
+
+    A classe `box` fornece a abstração genérica para grupos de células, enquanto `path` e `cube` permitem construir linhas, colunas e blocos. O modelo implementado com OR-Tools CP-SAT associa uma variável inteira a cada célula e aplica genericamente restrições `AllDifferent` e igualdades correspondentes aos valores fixos.
+
+    Os requisitos R1–R6 foram implementados e testados. O fluxo completo foi executado e validado para `n = 2` e `n = 3`, e a experiência de eficiência e escala incluiu também `n = 4`.
+
+    A implementação é parametrizada em `n` e não contém qualquer caso especial para uma grelha 9×9.
     """)
     return
 
