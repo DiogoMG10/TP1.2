@@ -8,14 +8,7 @@
     {
       "id": "Hbol",
       "code_hash": "1d0db38904205bec4d6f6f6a1f6cec3e",
-      "outputs": [
-        {
-          "type": "data",
-          "data": {
-            "text/plain": ""
-          }
-        }
-      ],
+      "outputs": [],
       "console": []
     },
     {
@@ -86,220 +79,80 @@
     {
       "id": "Xref",
       "code_hash": "eef7d8db1ac79dd082003fefcffc27e5",
-      "outputs": [
-        {
-          "type": "data",
-          "data": {
-            "text/plain": ""
-          }
-        }
-      ],
+      "outputs": [],
       "console": []
     },
     {
       "id": "SFPL",
       "code_hash": "7f01de5756cf81e4b8141434d2aec323",
-      "outputs": [
-        {
-          "type": "data",
-          "data": {
-            "text/plain": ""
-          }
-        }
-      ],
-      "console": [
-        {
-          "type": "stream",
-          "name": "stdout",
-          "text": "R1: testes conclu\u00eddos com sucesso\n",
-          "mimetype": "text/plain"
-        }
-      ]
+      "outputs": [],
+      "console": []
     },
     {
       "id": "BYtC",
       "code_hash": "53c9f257a36e029ba89f905392120350",
-      "outputs": [
-        {
-          "type": "data",
-          "data": {
-            "text/plain": ""
-          }
-        }
-      ],
+      "outputs": [],
       "console": []
     },
     {
       "id": "RGSE",
-      "code_hash": "28ac6906cbd58bcb4efe6982bdc77eed",
-      "outputs": [
-        {
-          "type": "data",
-          "data": {
-            "text/plain": ""
-          }
-        }
-      ],
-      "console": [
-        {
-          "type": "stream",
-          "name": "stdout",
-          "text": "R2 e R3: testes conclu\u00eddos com sucesso\n",
-          "mimetype": "text/plain"
-        }
-      ]
+      "code_hash": "8f38364eee8e7a8ddc34b9a09fc40079",
+      "outputs": [],
+      "console": []
     },
     {
       "id": "Kclp",
       "code_hash": "a8f64107d2dc49dde0180c48ccf64c6b",
-      "outputs": [
-        {
-          "type": "data",
-          "data": {
-            "text/plain": ""
-          }
-        }
-      ],
+      "outputs": [],
       "console": []
     },
     {
       "id": "emfo",
-      "code_hash": "7c2a749a0c1126be58195e51dfa9da95",
-      "outputs": [
-        {
-          "type": "data",
-          "data": {
-            "text/plain": ""
-          }
-        }
-      ],
-      "console": [
-        {
-          "type": "stream",
-          "name": "stdout",
-          "text": "R4: testes conclu\u00eddos com sucesso\n",
-          "mimetype": "text/plain"
-        }
-      ]
+      "code_hash": "a61d7d7850efd8f2fb21e43ce43e4cad",
+      "outputs": [],
+      "console": []
     },
     {
       "id": "Hstk",
       "code_hash": "c57e633736748382f61633480b4fe111",
-      "outputs": [
-        {
-          "type": "data",
-          "data": {
-            "text/plain": ""
-          }
-        }
-      ],
+      "outputs": [],
       "console": []
     },
     {
       "id": "nWHF",
       "code_hash": "84898866e6914da016ba7d78c6304b92",
-      "outputs": [
-        {
-          "type": "data",
-          "data": {
-            "text/plain": ""
-          }
-        }
-      ],
-      "console": [
-        {
-          "type": "stream",
-          "name": "stdout",
-          "text": "R5: testes conclu\u00eddos com sucesso\n",
-          "mimetype": "text/plain"
-        }
-      ]
+      "outputs": [],
+      "console": []
     },
     {
       "id": "iLit",
       "code_hash": "f722e2bb537b77258abbdf5d06f4bde6",
-      "outputs": [
-        {
-          "type": "data",
-          "data": {
-            "text/plain": ""
-          }
-        }
-      ],
+      "outputs": [],
       "console": []
     },
     {
       "id": "ZHCJ",
       "code_hash": "cd65fa3c8de58c2af453488679a11321",
-      "outputs": [
-        {
-          "type": "data",
-          "data": {
-            "text/plain": ""
-          }
-        }
-      ],
+      "outputs": [],
       "console": []
     },
     {
       "id": "ROlb",
       "code_hash": "900472e1af1ed45b247875ba627148c9",
-      "outputs": [
-        {
-          "type": "data",
-          "data": {
-            "text/plain": ""
-          }
-        }
-      ],
-      "console": [
-        {
-          "type": "stream",
-          "name": "stdout",
-          "text": "Pistas n=2: {(0, 1): 1, (1, 0): 4}\nSolu\u00e7\u00e3o n=2:\n[3, 1, 2, 4]\n[4, 2, 1, 3]\n[2, 3, 4, 1]\n[1, 4, 3, 2]\nn=2: valida\u00e7\u00e3o independente conclu\u00edda com sucesso\n",
-          "mimetype": "text/plain"
-        }
-      ]
+      "outputs": [],
+      "console": []
     },
     {
       "id": "qnkX",
       "code_hash": "4a99676031822562371d6c5ffe6e2d3a",
-      "outputs": [
-        {
-          "type": "data",
-          "data": {
-            "text/plain": ""
-          }
-        }
-      ],
-      "console": [
-        {
-          "type": "stream",
-          "name": "stdout",
-          "text": "Pistas n=3: {(0, 6): 7, (3, 7): 5, (1, 2): 2}\nSolu\u00e7\u00e3o n=3:\n[5, 3, 8, 2, 9, 1, 7, 6, 4]\n[1, 6, 2, 4, 7, 3, 5, 9, 8]\n[7, 4, 9, 5, 6, 8, 2, 1, 3]\n[2, 7, 3, 8, 4, 6, 1, 5, 9]\n[4, 1, 5, 3, 2, 9, 8, 7, 6]\n[9, 8, 6, 7, 1, 5, 4, 3, 2]\n[6, 5, 4, 1, 3, 2, 9, 8, 7]\n[3, 2, 1, 9, 8, 7, 6, 4, 5]\n[8, 9, 7, 6, 5, 4, 3, 2, 1]\nn=3: valida\u00e7\u00e3o independente conclu\u00edda com sucesso\n",
-          "mimetype": "text/plain"
-        }
-      ]
+      "outputs": [],
+      "console": []
     },
     {
       "id": "TqIu",
       "code_hash": "3d9469f86611221d5dab39afbbba6558",
-      "outputs": [
-        {
-          "type": "data",
-          "data": {
-            "text/plain": ""
-          }
-        }
-      ],
-      "console": [
-        {
-          "type": "stream",
-          "name": "stdout",
-          "text": "Testes adicionais de cobertura conclu\u00eddos com sucesso\n",
-          "mimetype": "text/plain"
-        }
-      ]
+      "outputs": [],
+      "console": []
     },
     {
       "id": "Vxnm",
@@ -317,22 +170,8 @@
     {
       "id": "DnEU",
       "code_hash": "f339801808f1ee419fa56bc62e178bd3",
-      "outputs": [
-        {
-          "type": "data",
-          "data": {
-            "application/json": "[{\"n\": 2, \"dimensao\": \"4x4\", \"seed\": 100, \"tempo_s\": \"text/plain+float:0.021912500000325963\", \"estado\": \"SOLU\\u00c7\\u00c3O\", \"validada\": true}, {\"n\": 2, \"dimensao\": \"4x4\", \"seed\": 101, \"tempo_s\": \"text/plain+float:0.015399999989313073\", \"estado\": \"SOLU\\u00c7\\u00c3O\", \"validada\": true}, {\"n\": 2, \"dimensao\": \"4x4\", \"seed\": 102, \"tempo_s\": \"text/plain+float:0.017634200004977174\", \"estado\": \"SOLU\\u00c7\\u00c3O\", \"validada\": true}, {\"n\": 3, \"dimensao\": \"9x9\", \"seed\": 100, \"tempo_s\": \"text/plain+float:0.003313599998364225\", \"estado\": \"INFEASIBLE\", \"validada\": null}, {\"n\": 3, \"dimensao\": \"9x9\", \"seed\": 101, \"tempo_s\": \"text/plain+float:0.12414039998839144\", \"estado\": \"SOLU\\u00c7\\u00c3O\", \"validada\": true}, {\"n\": 3, \"dimensao\": \"9x9\", \"seed\": 102, \"tempo_s\": \"text/plain+float:0.0032998999959090725\", \"estado\": \"INFEASIBLE\", \"validada\": null}, {\"n\": 4, \"dimensao\": \"16x16\", \"seed\": 100, \"tempo_s\": \"text/plain+float:0.8020167999929981\", \"estado\": \"SOLU\\u00c7\\u00c3O\", \"validada\": true}, {\"n\": 4, \"dimensao\": \"16x16\", \"seed\": 101, \"tempo_s\": \"text/plain+float:0.6170289000001503\", \"estado\": \"SOLU\\u00c7\\u00c3O\", \"validada\": true}, {\"n\": 4, \"dimensao\": \"16x16\", \"seed\": 102, \"tempo_s\": \"text/plain+float:0.5052899000002071\", \"estado\": \"SOLU\\u00c7\\u00c3O\", \"validada\": true}]"
-          }
-        }
-      ],
-      "console": [
-        {
-          "type": "stream",
-          "name": "stdout",
-          "text": "RESULTADOS INDIVIDUAIS\n-------------------------------------------------------------------------------------\nn=2 | grelha=4x4 | seed=100 | tempo=0.021913 s | estado=SOLU\u00c7\u00c3O | validada=True\nn=2 | grelha=4x4 | seed=101 | tempo=0.015400 s | estado=SOLU\u00c7\u00c3O | validada=True\nn=2 | grelha=4x4 | seed=102 | tempo=0.017634 s | estado=SOLU\u00c7\u00c3O | validada=True\nn=3 | grelha=9x9 | seed=100 | tempo=0.003314 s | estado=INFEASIBLE | validada=None\nn=3 | grelha=9x9 | seed=101 | tempo=0.124140 s | estado=SOLU\u00c7\u00c3O | validada=True\nn=3 | grelha=9x9 | seed=102 | tempo=0.003300 s | estado=INFEASIBLE | validada=None\nn=4 | grelha=16x16 | seed=100 | tempo=0.802017 s | estado=SOLU\u00c7\u00c3O | validada=True\nn=4 | grelha=16x16 | seed=101 | tempo=0.617029 s | estado=SOLU\u00c7\u00c3O | validada=True\nn=4 | grelha=16x16 | seed=102 | tempo=0.505290 s | estado=SOLU\u00c7\u00c3O | validada=True\n\nRESUMO POR DIMENS\u00c3O\n-------------------------------------------------------------------------------------\nn=2 | grelha=4x4 | execu\u00e7\u00f5es=3 | tempo m\u00e9dio=0.018316 s | m\u00ednimo=0.015400 s | m\u00e1ximo=0.021913 s | SOLU\u00c7\u00c3O=3 | INFEASIBLE=0\nn=3 | grelha=9x9 | execu\u00e7\u00f5es=3 | tempo m\u00e9dio=0.043585 s | m\u00ednimo=0.003300 s | m\u00e1ximo=0.124140 s | SOLU\u00c7\u00c3O=1 | INFEASIBLE=2\nn=4 | grelha=16x16 | execu\u00e7\u00f5es=3 | tempo m\u00e9dio=0.641445 s | m\u00ednimo=0.505290 s | m\u00e1ximo=0.802017 s | SOLU\u00c7\u00c3O=3 | INFEASIBLE=0\n",
-          "mimetype": "text/plain"
-        }
-      ]
+      "outputs": [],
+      "console": []
     },
     {
       "id": "ulZA",
@@ -376,22 +215,8 @@
     {
       "id": "ZBYS",
       "code_hash": "37f053b9a19c8cfc60b2962a3053983c",
-      "outputs": [
-        {
-          "type": "data",
-          "data": {
-            "text/plain": ""
-          }
-        }
-      ],
-      "console": [
-        {
-          "type": "stream",
-          "name": "stdout",
-          "text": "AMBIENTE DE EXECU\u00c7\u00c3O\n--------------------------------------------------\nPython: 3.14.7 | packaged by Anaconda, Inc. | (main, Aug 14 2026, 10:12:46) [MSC v.1942 64 bit (AMD64)]\nMarimo: 0.25.0\nOR-Tools: 9.15.6755\n",
-          "mimetype": "text/plain"
-        }
-      ]
+      "outputs": [],
+      "console": []
     },
     {
       "id": "aLJB",
