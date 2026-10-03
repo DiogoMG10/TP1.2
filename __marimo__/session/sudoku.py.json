@@ -8,7 +8,14 @@
     {
       "id": "Hbol",
       "code_hash": "1d0db38904205bec4d6f6f6a1f6cec3e",
-      "outputs": [],
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
       "console": []
     },
     {
@@ -51,7 +58,7 @@
       "console": []
     },
     {
-      "id": "SFPL",
+      "id": "lEQa",
       "code_hash": "7f01de5756cf81e4b8141434d2aec323",
       "outputs": [
         {
@@ -71,7 +78,7 @@
       ]
     },
     {
-      "id": "lEQa",
+      "id": "PKri",
       "code_hash": "53c9f257a36e029ba89f905392120350",
       "outputs": [
         {
@@ -84,13 +91,13 @@
       "console": []
     },
     {
-      "id": "BYtC",
+      "id": "Xref",
       "code_hash": "ce1d661b3e8727e439e3888a3a051f96",
       "outputs": [],
       "console": []
     },
     {
-      "id": "PKri",
+      "id": "SFPL",
       "code_hash": "a8f64107d2dc49dde0180c48ccf64c6b",
       "outputs": [
         {
@@ -103,13 +110,13 @@
       "console": []
     },
     {
-      "id": "RGSE",
+      "id": "BYtC",
       "code_hash": "114d00979fdad9ecd3ecbfab84b32747",
       "outputs": [],
       "console": []
     },
     {
-      "id": "Xref",
+      "id": "RGSE",
       "code_hash": "c57e633736748382f61633480b4fe111",
       "outputs": [
         {
@@ -142,7 +149,7 @@
       ]
     },
     {
-      "id": "wVFS",
+      "id": "emfo",
       "code_hash": "f722e2bb537b77258abbdf5d06f4bde6",
       "outputs": [
         {
@@ -155,7 +162,7 @@
       "console": []
     },
     {
-      "id": "UJfV",
+      "id": "Hstk",
       "code_hash": "cd65fa3c8de58c2af453488679a11321",
       "outputs": [
         {
@@ -168,7 +175,7 @@
       "console": []
     },
     {
-      "id": "iCBU",
+      "id": "nWHF",
       "code_hash": "900472e1af1ed45b247875ba627148c9",
       "outputs": [
         {
@@ -182,13 +189,13 @@
         {
           "type": "stream",
           "name": "stdout",
-          "text": "Pistas n=2: {(0, 1): 1, (1, 0): 4}\nSolu\u00e7\u00e3o n=2:\n[3, 1, 2, 4]\n[4, 2, 1, 3]\n[2, 3, 4, 1]\n[1, 4, 3, 2]\nn=2: valida\u00e7\u00e3o independente conclu\u00edda com sucesso\n",
+          "text": "Pistas n=2: {(0, 1): 1, (1, 0): 4}\nSolu\u00e7\u00e3o n=2:\n[2, 1, 4, 3]\n[4, 3, 2, 1]\n[3, 2, 1, 4]\n[1, 4, 3, 2]\nn=2: valida\u00e7\u00e3o independente conclu\u00edda com sucesso\n",
           "mimetype": "text/plain"
         }
       ]
     },
     {
-      "id": "PNER",
+      "id": "iLit",
       "code_hash": "4a99676031822562371d6c5ffe6e2d3a",
       "outputs": [
         {
@@ -208,7 +215,60 @@
       ]
     },
     {
-      "id": "emfo",
+      "id": "ZHCJ",
+      "code_hash": "3d9469f86611221d5dab39afbbba6558",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "Testes adicionais de cobertura conclu\u00eddos com sucesso\n",
+          "mimetype": "text/plain"
+        }
+      ]
+    },
+    {
+      "id": "aXnf",
+      "code_hash": "ab723ec6b6c2ef4df133573656822ce5",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"eficiencia-e-escala\">Efici\u00eancia e Escala</h2></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Gmnq",
+      "code_hash": "f339801808f1ee419fa56bc62e178bd3",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "application/json": "[{\"n\": 2, \"dimensao\": \"4x4\", \"seed\": 100, \"tempo_s\": \"text/plain+float:0.04623170000559185\", \"estado\": \"SOLU\\u00c7\\u00c3O\", \"validada\": true}, {\"n\": 2, \"dimensao\": \"4x4\", \"seed\": 101, \"tempo_s\": \"text/plain+float:0.014087399991694838\", \"estado\": \"SOLU\\u00c7\\u00c3O\", \"validada\": true}, {\"n\": 2, \"dimensao\": \"4x4\", \"seed\": 102, \"tempo_s\": \"text/plain+float:0.014658100000815466\", \"estado\": \"SOLU\\u00c7\\u00c3O\", \"validada\": true}, {\"n\": 3, \"dimensao\": \"9x9\", \"seed\": 100, \"tempo_s\": \"text/plain+float:0.0014565000019501895\", \"estado\": \"INFEASIBLE\", \"validada\": null}, {\"n\": 3, \"dimensao\": \"9x9\", \"seed\": 101, \"tempo_s\": \"text/plain+float:0.0565476000047056\", \"estado\": \"SOLU\\u00c7\\u00c3O\", \"validada\": true}, {\"n\": 3, \"dimensao\": \"9x9\", \"seed\": 102, \"tempo_s\": \"text/plain+float:0.0033595999993849546\", \"estado\": \"INFEASIBLE\", \"validada\": null}, {\"n\": 4, \"dimensao\": \"16x16\", \"seed\": 100, \"tempo_s\": \"text/plain+float:0.6931614000059199\", \"estado\": \"SOLU\\u00c7\\u00c3O\", \"validada\": true}, {\"n\": 4, \"dimensao\": \"16x16\", \"seed\": 101, \"tempo_s\": \"text/plain+float:0.7510065999958897\", \"estado\": \"SOLU\\u00c7\\u00c3O\", \"validada\": true}, {\"n\": 4, \"dimensao\": \"16x16\", \"seed\": 102, \"tempo_s\": \"text/plain+float:0.6681933999934699\", \"estado\": \"SOLU\\u00c7\\u00c3O\", \"validada\": true}]"
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "RESULTADOS INDIVIDUAIS\n-------------------------------------------------------------------------------------\nn=2 | grelha=4x4 | seed=100 | tempo=0.046232 s | estado=SOLU\u00c7\u00c3O | validada=True\nn=2 | grelha=4x4 | seed=101 | tempo=0.014087 s | estado=SOLU\u00c7\u00c3O | validada=True\nn=2 | grelha=4x4 | seed=102 | tempo=0.014658 s | estado=SOLU\u00c7\u00c3O | validada=True\nn=3 | grelha=9x9 | seed=100 | tempo=0.001457 s | estado=INFEASIBLE | validada=None\nn=3 | grelha=9x9 | seed=101 | tempo=0.056548 s | estado=SOLU\u00c7\u00c3O | validada=True\nn=3 | grelha=9x9 | seed=102 | tempo=0.003360 s | estado=INFEASIBLE | validada=None\nn=4 | grelha=16x16 | seed=100 | tempo=0.693161 s | estado=SOLU\u00c7\u00c3O | validada=True\nn=4 | grelha=16x16 | seed=101 | tempo=0.751007 s | estado=SOLU\u00c7\u00c3O | validada=True\nn=4 | grelha=16x16 | seed=102 | tempo=0.668193 s | estado=SOLU\u00c7\u00c3O | validada=True\n\nRESUMO POR DIMENS\u00c3O\n-------------------------------------------------------------------------------------\nn=2 | grelha=4x4 | execu\u00e7\u00f5es=3 | tempo m\u00e9dio=0.024992 s | m\u00ednimo=0.014087 s | m\u00e1ximo=0.046232 s | SOLU\u00c7\u00c3O=3 | INFEASIBLE=0\nn=3 | grelha=9x9 | execu\u00e7\u00f5es=3 | tempo m\u00e9dio=0.020455 s | m\u00ednimo=0.001457 s | m\u00e1ximo=0.056548 s | SOLU\u00c7\u00c3O=1 | INFEASIBLE=2\nn=4 | grelha=16x16 | execu\u00e7\u00f5es=3 | tempo m\u00e9dio=0.704120 s | m\u00ednimo=0.668193 s | m\u00e1ximo=0.751007 s | SOLU\u00c7\u00c3O=3 | INFEASIBLE=0\n",
+          "mimetype": "text/plain"
+        }
+      ]
+    },
+    {
+      "id": "ROlb",
       "code_hash": "97a5d6439f0aea1c8e7bbebb489895f4",
       "outputs": [
         {

@@ -997,7 +997,7 @@ def _(resolver_sudoku):
         print(
             "n=2: validação independente concluída com sucesso"
         )
-    return
+    return pistas_2, solucao_2
 
 
 @app.cell
@@ -1033,6 +1033,227 @@ def _(resolver_sudoku):
         print(
             "n=3: validação independente concluída com sucesso"
         )
+    return
+
+
+@app.cell
+def _(gerar_pistas, pistas_2, solucao_2):
+    # ============================================================
+    # Contribuição LLM:
+    # Testes adicionais de cobertura para R4 e para o validador
+    # independente de R6. Estes testes reforçam a cobertura e não
+    # introduzem novos requisitos funcionais.
+    # ============================================================
+
+
+    # ------------------------------------------------------------
+    # 1. R4 - caso limite k = 0
+    # ------------------------------------------------------------
+
+    pistas_zero = gerar_pistas(
+        n=2,
+        k=0,
+        seed=123
+    )
+
+    assert isinstance(pistas_zero, box)
+    assert len(pistas_zero.cells) == 0
+
+
+    # ------------------------------------------------------------
+    # 2. R4 - caso limite k = n^4
+    #    Para n = 2 existem 4 x 4 = 16 células.
+    # ------------------------------------------------------------
+
+    pistas_todas = gerar_pistas(
+        n=2,
+        k=16,
+        seed=123
+    )
+
+    assert isinstance(pistas_todas, box)
+    assert len(pistas_todas.cells) == 16
+
+    coordenadas_esperadas = {
+        (i, j)
+        for i in range(4)
+        for j in range(4)
+    }
+
+    # Todas as 16 células foram selecionadas exatamente uma vez.
+    assert set(pistas_todas.cells.keys()) == coordenadas_esperadas
+
+    # Todos os valores estão no domínio 1..4.
+    assert all(
+        1 <= val <= 4
+        for val in pistas_todas.cells.values()
+    )
+
+
+    # ------------------------------------------------------------
+    # 3. Teste negativo de validar_sudoku
+    #    Reutiliza a solução válida obtida anteriormente para n = 2.
+    # ------------------------------------------------------------
+
+    assert solucao_2 is not None
+    assert validar_sudoku(solucao_2, 2, pistas_2)
+
+    # Cópia independente da matriz.
+    solucao_2_invalida = [
+        linha[:] for linha in solucao_2
+    ]
+
+    # Introduz deliberadamente uma repetição na primeira linha.
+    solucao_2_invalida[0][0] = solucao_2_invalida[0][1]
+
+    assert validar_sudoku(
+        solucao_2_invalida,
+        2,
+        pistas_2
+    ) is False
+
+
+    print("Testes adicionais de cobertura concluídos com sucesso")
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    ## Eficiência e Escala
+    """)
+    return
+
+
+@app.cell
+def _(resolver_sudoku):
+    # ============================================================
+    # Contribuição LLM:
+    # Experiência reprodutível de eficiência e escala.
+    # Mede apenas resolver_sudoku(), para n = 2, 3 e 4,
+    # com k = n e seeds 100, 101 e 102.
+    #
+    # As variáveis da experiência são locais à função para evitar
+    # conflitos de nomes entre células do Marimo.
+    # ============================================================
+
+    def executar_experiencia_desempenho():
+        import time
+
+        dimensoes = [2, 3, 4]
+        seeds = [100, 101, 102]
+
+        resultados = []
+
+        # --------------------------------------------------------
+        # Execuções
+        # --------------------------------------------------------
+
+        for n_local in dimensoes:
+            for seed_local in seeds:
+
+                # Mede APENAS resolver_sudoku()
+                inicio_local = time.perf_counter()
+
+                solucao_local, pistas_local = resolver_sudoku(
+                    n=n_local,
+                    k=n_local,
+                    seed=seed_local
+                )
+
+                fim_local = time.perf_counter()
+
+                tempo_local = fim_local - inicio_local
+
+                # Validação feita fora do intervalo medido
+                if solucao_local is None:
+                    estado_local = "INFEASIBLE"
+                    validada_local = None
+                else:
+                    estado_local = "SOLUÇÃO"
+                    validada_local = validar_sudoku(
+                        solucao_local,
+                        n_local,
+                        pistas_local
+                    )
+
+                resultados.append({
+                    "n": n_local,
+                    "dimensao": f"{n_local**2}x{n_local**2}",
+                    "seed": seed_local,
+                    "tempo_s": tempo_local,
+                    "estado": estado_local,
+                    "validada": validada_local
+                })
+
+        # ========================================================
+        # 1. Resultados individuais
+        # ========================================================
+
+        print("RESULTADOS INDIVIDUAIS")
+        print("-" * 85)
+
+        for resultado in resultados:
+            print(
+                f"n={resultado['n']} | "
+                f"grelha={resultado['dimensao']} | "
+                f"seed={resultado['seed']} | "
+                f"tempo={resultado['tempo_s']:.6f} s | "
+                f"estado={resultado['estado']} | "
+                f"validada={resultado['validada']}"
+            )
+
+        # ========================================================
+        # 2. Resumo por dimensão
+        # ========================================================
+
+        print()
+        print("RESUMO POR DIMENSÃO")
+        print("-" * 85)
+
+        for n_local in dimensoes:
+            resultados_n = [
+                resultado
+                for resultado in resultados
+                if resultado["n"] == n_local
+            ]
+
+            tempos_n = [
+                resultado["tempo_s"]
+                for resultado in resultados_n
+            ]
+
+            numero_execucoes = len(resultados_n)
+
+            numero_solucoes = sum(
+                resultado["estado"] == "SOLUÇÃO"
+                for resultado in resultados_n
+            )
+
+            numero_inviaveis = sum(
+                resultado["estado"] == "INFEASIBLE"
+                for resultado in resultados_n
+            )
+
+            tempo_medio = sum(tempos_n) / numero_execucoes
+            tempo_minimo = min(tempos_n)
+            tempo_maximo = max(tempos_n)
+
+            print(
+                f"n={n_local} | "
+                f"grelha={n_local**2}x{n_local**2} | "
+                f"execuções={numero_execucoes} | "
+                f"tempo médio={tempo_medio:.6f} s | "
+                f"mínimo={tempo_minimo:.6f} s | "
+                f"máximo={tempo_maximo:.6f} s | "
+                f"SOLUÇÃO={numero_solucoes} | "
+                f"INFEASIBLE={numero_inviaveis}"
+            )
+
+        return resultados
+
+
+    executar_experiencia_desempenho()
     return
 
 
