@@ -555,110 +555,110 @@ def _(cube, deve_lancar_value_error, path):
         # ------------------------------------------------------------
         # R2 - cube
         # ------------------------------------------------------------
-    
+
         # Bloco superior direito numa grelha 4 x 4
         c1 = cube(2, 0, 1)
-    
+
         assert isinstance(c1, box)
-    
+
         assert set(c1.cells.keys()) == {
             (0, 2), (0, 3),
             (1, 2), (1, 3)
         }
-    
+
         assert all(val is None for val in c1.cells.values())
         assert len(c1.cells) == 4
-    
-    
+
+
         # Outro bloco: inferior direito
         c2 = cube(2, 1, 1)
-    
+
         assert set(c2.cells.keys()) == {
             (2, 2), (2, 3),
             (3, 2), (3, 3)
         }
-    
-    
+
+
         # Índices de bloco inválidos
         deve_lancar_value_error(lambda: cube(2, -1, 0))
         deve_lancar_value_error(lambda: cube(2, 2, 0))
         deve_lancar_value_error(lambda: cube(2, 0, 2))
-    
-    
+
+
         # ------------------------------------------------------------
         # R3 - path
         # ------------------------------------------------------------
-    
+
         # Horizontal crescente
         p1 = path(2, (1, 0), (1, 3))
-    
+
         assert isinstance(p1, box)
-    
+
         assert set(p1.cells.keys()) == {
             (1, 0),
             (1, 1),
             (1, 2),
             (1, 3)
         }
-    
-    
+
+
         # Horizontal decrescente
         p2 = path(2, (1, 3), (1, 0))
-    
+
         assert set(p2.cells.keys()) == {
             (1, 0),
             (1, 1),
             (1, 2),
             (1, 3)
         }
-    
-    
+
+
         # Vertical crescente
         p3 = path(2, (0, 2), (3, 2))
-    
+
         assert set(p3.cells.keys()) == {
             (0, 2),
             (1, 2),
             (2, 2),
             (3, 2)
         }
-    
-    
+
+
         # Vertical decrescente
         p4 = path(2, (3, 2), (0, 2))
-    
+
         assert set(p4.cells.keys()) == {
             (0, 2),
             (1, 2),
             (2, 2),
             (3, 2)
         }
-    
-    
+
+
         # inicio == fim
         p5 = path(2, (2, 2), (2, 2))
-    
+
         assert set(p5.cells.keys()) == {
             (2, 2)
         }
-    
-    
+
+
         # Percurso que não é horizontal nem vertical
         deve_lancar_value_error(
             lambda: path(2, (0, 0), (2, 2))
         )
-    
-    
+
+
         # Coordenadas fora da grelha
         deve_lancar_value_error(
             lambda: path(2, (0, 0), (0, 4))
         )
-    
+
         deve_lancar_value_error(
             lambda: path(2, (-1, 1), (2, 1))
         )
-    
-    
+
+
         print("R2 e R3: testes concluídos com sucesso")
 
     testar_r2_r3()
@@ -728,58 +728,58 @@ def _(deve_lancar_value_error, gerar_pistas):
         # ------------------------------------------------------------
         # Resultado e número de pistas
         # ------------------------------------------------------------
-    
+
         p1 = gerar_pistas(2, k=5, seed=123)
-    
+
         assert isinstance(p1, box)
         assert len(p1.cells) == 5
-    
-    
+
+
         # ------------------------------------------------------------
         # Coordenadas e valores válidos
         # ------------------------------------------------------------
-    
+
         for (i, j), val in p1.cells.items():
             assert 0 <= i < 4
             assert 0 <= j < 4
             assert 1 <= val <= 4
-    
-    
+
+
         # As coordenadas são distintas
         assert len(set(p1.cells.keys())) == 5
-    
-    
+
+
         # ------------------------------------------------------------
         # Reprodutibilidade com a mesma semente
         # ------------------------------------------------------------
-    
+
         p2 = gerar_pistas(2, k=5, seed=123)
-    
+
         assert p1.cells == p2.cells
-    
-    
+
+
         # ------------------------------------------------------------
         # Valor por omissão: k = n
         # ------------------------------------------------------------
-    
+
         p_default = gerar_pistas(3, seed=123)
-    
+
         assert len(p_default.cells) == 3
-    
-    
+
+
         # ------------------------------------------------------------
         # Valores inválidos de k
         # ------------------------------------------------------------
-    
+
         deve_lancar_value_error(
             lambda: gerar_pistas(2, k=-1, seed=123)
         )
-    
+
         deve_lancar_value_error(
             lambda: gerar_pistas(2, k=17, seed=123)
         )
-    
-    
+
+
         print("R4: testes concluídos com sucesso")
 
     testar_r4()
@@ -1468,31 +1468,31 @@ def _(mo):
 
     | n | Grelha | Seed | Tempo (s) | Estado | Validação |
     |---:|:---:|---:|---:|:---:|:---:|
-    | 2 | 4×4 | 100 | 0.021913 | SOLUÇÃO | True |
-    | 2 | 4×4 | 101 | 0.015400 | SOLUÇÃO | True |
-    | 2 | 4×4 | 102 | 0.017634 | SOLUÇÃO | True |
-    | 3 | 9×9 | 100 | 0.003314 | INFEASIBLE | — |
-    | 3 | 9×9 | 101 | 0.124140 | SOLUÇÃO | True |
-    | 3 | 9×9 | 102 | 0.003300 | INFEASIBLE | — |
-    | 4 | 16×16 | 100 | 0.802017 | SOLUÇÃO | True |
-    | 4 | 16×16 | 101 | 0.617029 | SOLUÇÃO | True |
-    | 4 | 16×16 | 102 | 0.505290 | SOLUÇÃO | True |
+    | 2 | 4×4 | 100 | 0.024418 | SOLUÇÃO | True |
+    | 2 | 4×4 | 101 | 0.021688 | SOLUÇÃO | True |
+    | 2 | 4×4 | 102 | 0.018364 | SOLUÇÃO | True |
+    | 3 | 9×9 | 100 | 0.003253 | INFEASIBLE | — |
+    | 3 | 9×9 | 101 | 0.115156 | SOLUÇÃO | True |
+    | 3 | 9×9 | 102 | 0.003543 | INFEASIBLE | — |
+    | 4 | 16×16 | 100 | 0.673091 | SOLUÇÃO | True |
+    | 4 | 16×16 | 101 | 0.464242 | SOLUÇÃO | True |
+    | 4 | 16×16 | 102 | 0.660489 | SOLUÇÃO | True |
 
     ### Resumo por dimensão
 
     | n | Grelha | Execuções | Média (s) | Mínimo (s) | Máximo (s) | SOLUÇÃO | INFEASIBLE |
     |---:|:---:|---:|---:|---:|---:|---:|---:|
-    | 2 | 4×4 | 3 | 0.018316 | 0.015400 | 0.021913 | 3 | 0 |
-    | 3 | 9×9 | 3 | 0.043585 | 0.003300 | 0.124140 | 1 | 2 |
-    | 4 | 16×16 | 3 | 0.641445 | 0.505290 | 0.802017 | 3 | 0 |
+    | 2 | 4×4 | 3 | 0.021490 | 0.018364 | 0.024418 | 3 | 0 |
+    | 3 | 9×9 | 3 | 0.040651 | 0.003253 | 0.115156 | 1 | 2 |
+    | 4 | 16×16 | 3 | 0.599274 | 0.464242 | 0.673091 | 3 | 0 |
 
     ### Observações dos dados
 
-    Para `n = 2`, as três instâncias tiveram solução e foram validadas independentemente. Os tempos observados variaram entre 0.015400 s e 0.021913 s.
+    Para `n = 2`, as três instâncias tiveram solução e foram validadas independentemente. Os tempos observados variaram entre 0.018364 s e 0.024418 s.
 
-    Para `n = 3`, apenas a instância com `seed = 101` teve solução, demorando 0.124140 s. As instâncias com `seed = 100` e `seed = 102` foram declaradas `INFEASIBLE` e terminaram em 0.003314 s e 0.003300 s, respetivamente.
+    Para `n = 3`, apenas a instância com `seed = 101` teve solução, demorando 0.115156 s. As instâncias com `seed = 100` e `seed = 102` foram declaradas `INFEASIBLE` e terminaram em 0.003253 s e 0.003543 s, respetivamente.
 
-    Para `n = 4`, as três instâncias tiveram solução e foram validadas, com tempos entre 0.505290 s e 0.802017 s.
+    Para `n = 4`, as três instâncias tiveram solução e foram validadas, com tempos entre 0.464242 s e 0.673091 s.
 
     ### Interpretação
 
@@ -1634,7 +1634,7 @@ def _(mo):
 
     Diálogo principal utilizado no desenvolvimento do TP1.2 — Sudoku:
 
-    **https://chatgpt.com/share/6ac12d98-2ef8-83ed-969a-449c71987c2c**
+    [Diálogo principal TP1.2 — Sudoku](https://chatgpt.com/share/6ac12d98-2ef8-83ed-969a-449c71987c2c)
     """)
     return
 
@@ -1642,6 +1642,8 @@ def _(mo):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
+    <div style="page-break-before: always;"></div>
+
     ## Conclusão
 
     Neste exercício foi modelado um Sudoku genérico \(n^2 \times n^2\) como um problema de satisfação de restrições.

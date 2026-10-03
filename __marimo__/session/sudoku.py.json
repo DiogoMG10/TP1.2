@@ -8,7 +8,14 @@
     {
       "id": "Hbol",
       "code_hash": "1d0db38904205bec4d6f6f6a1f6cec3e",
-      "outputs": [],
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
       "console": []
     },
     {
@@ -79,80 +86,220 @@
     {
       "id": "Xref",
       "code_hash": "eef7d8db1ac79dd082003fefcffc27e5",
-      "outputs": [],
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
       "console": []
     },
     {
       "id": "SFPL",
       "code_hash": "7f01de5756cf81e4b8141434d2aec323",
-      "outputs": [],
-      "console": []
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "R1: testes conclu\u00eddos com sucesso\n",
+          "mimetype": "text/plain"
+        }
+      ]
     },
     {
       "id": "BYtC",
       "code_hash": "53c9f257a36e029ba89f905392120350",
-      "outputs": [],
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
       "console": []
     },
     {
       "id": "RGSE",
       "code_hash": "8f38364eee8e7a8ddc34b9a09fc40079",
-      "outputs": [],
-      "console": []
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "R2 e R3: testes conclu\u00eddos com sucesso\n",
+          "mimetype": "text/plain"
+        }
+      ]
     },
     {
       "id": "Kclp",
       "code_hash": "a8f64107d2dc49dde0180c48ccf64c6b",
-      "outputs": [],
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
       "console": []
     },
     {
       "id": "emfo",
       "code_hash": "a61d7d7850efd8f2fb21e43ce43e4cad",
-      "outputs": [],
-      "console": []
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "R4: testes conclu\u00eddos com sucesso\n",
+          "mimetype": "text/plain"
+        }
+      ]
     },
     {
       "id": "Hstk",
       "code_hash": "c57e633736748382f61633480b4fe111",
-      "outputs": [],
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
       "console": []
     },
     {
       "id": "nWHF",
       "code_hash": "84898866e6914da016ba7d78c6304b92",
-      "outputs": [],
-      "console": []
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "R5: testes conclu\u00eddos com sucesso\n",
+          "mimetype": "text/plain"
+        }
+      ]
     },
     {
       "id": "iLit",
       "code_hash": "f722e2bb537b77258abbdf5d06f4bde6",
-      "outputs": [],
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
       "console": []
     },
     {
       "id": "ZHCJ",
       "code_hash": "cd65fa3c8de58c2af453488679a11321",
-      "outputs": [],
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
       "console": []
     },
     {
       "id": "ROlb",
       "code_hash": "900472e1af1ed45b247875ba627148c9",
-      "outputs": [],
-      "console": []
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "Pistas n=2: {(0, 1): 1, (1, 0): 4}\nSolu\u00e7\u00e3o n=2:\n[3, 1, 2, 4]\n[4, 2, 1, 3]\n[2, 3, 4, 1]\n[1, 4, 3, 2]\nn=2: valida\u00e7\u00e3o independente conclu\u00edda com sucesso\n",
+          "mimetype": "text/plain"
+        }
+      ]
     },
     {
       "id": "qnkX",
       "code_hash": "4a99676031822562371d6c5ffe6e2d3a",
-      "outputs": [],
-      "console": []
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "Pistas n=3: {(0, 6): 7, (3, 7): 5, (1, 2): 2}\nSolu\u00e7\u00e3o n=3:\n[5, 3, 8, 2, 9, 1, 7, 6, 4]\n[1, 6, 2, 4, 7, 3, 5, 9, 8]\n[7, 4, 9, 5, 6, 8, 2, 1, 3]\n[2, 7, 3, 8, 4, 6, 1, 5, 9]\n[4, 1, 5, 3, 2, 9, 8, 7, 6]\n[9, 8, 6, 7, 1, 5, 4, 3, 2]\n[6, 5, 4, 1, 3, 2, 9, 8, 7]\n[3, 2, 1, 9, 8, 7, 6, 4, 5]\n[8, 9, 7, 6, 5, 4, 3, 2, 1]\nn=3: valida\u00e7\u00e3o independente conclu\u00edda com sucesso\n",
+          "mimetype": "text/plain"
+        }
+      ]
     },
     {
       "id": "TqIu",
       "code_hash": "3d9469f86611221d5dab39afbbba6558",
-      "outputs": [],
-      "console": []
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "Testes adicionais de cobertura conclu\u00eddos com sucesso\n",
+          "mimetype": "text/plain"
+        }
+      ]
     },
     {
       "id": "Vxnm",
@@ -170,17 +317,31 @@
     {
       "id": "DnEU",
       "code_hash": "f339801808f1ee419fa56bc62e178bd3",
-      "outputs": [],
-      "console": []
-    },
-    {
-      "id": "ulZA",
-      "code_hash": "d8827a4f489d04cd1839ec1abab83bc2",
       "outputs": [
         {
           "type": "data",
           "data": {
-            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h3 id=\"resultados-e-analise\">Resultados e an\u00e1lise</h3>\n<span class=\"paragraph\">Foi realizada uma experi\u00eancia simples de efici\u00eancia e escala para <code>n = 2</code>, <code>n = 3</code> e <code>n = 4</code>. Em cada dimens\u00e3o foram efetuadas tr\u00eas execu\u00e7\u00f5es, usando <code>k = n</code> e as sementes determin\u00edsticas <code>100</code>, <code>101</code> e <code>102</code>.</span>\n<span class=\"paragraph\">Estas escolhas correspondem a uma decis\u00e3o metodol\u00f3gica do grupo para ilustrar o comportamento da implementa\u00e7\u00e3o e n\u00e3o a um requisito espec\u00edfico do enunciado.</span>\n<span class=\"paragraph\">O tempo foi medido com <code>time.perf_counter()</code> apenas em torno da chamada a <code>resolver_sudoku()</code>. A valida\u00e7\u00e3o da solu\u00e7\u00e3o atrav\u00e9s de <code>validar_sudoku()</code> foi realizada depois da medi\u00e7\u00e3o e, por isso, n\u00e3o est\u00e1 inclu\u00edda nos tempos apresentados.</span>\n<h3 id=\"resultados-observados\">Resultados observados</h3>\n<table>\n<thead>\n<tr>\n<th style=\"text-align: right;\">n</th>\n<th style=\"text-align: center;\">Grelha</th>\n<th style=\"text-align: right;\">Seed</th>\n<th style=\"text-align: right;\">Tempo (s)</th>\n<th style=\"text-align: center;\">Estado</th>\n<th style=\"text-align: center;\">Valida\u00e7\u00e3o</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td style=\"text-align: right;\">2</td>\n<td style=\"text-align: center;\">4\u00d74</td>\n<td style=\"text-align: right;\">100</td>\n<td style=\"text-align: right;\">0.021913</td>\n<td style=\"text-align: center;\">SOLU\u00c7\u00c3O</td>\n<td style=\"text-align: center;\">True</td>\n</tr>\n<tr>\n<td style=\"text-align: right;\">2</td>\n<td style=\"text-align: center;\">4\u00d74</td>\n<td style=\"text-align: right;\">101</td>\n<td style=\"text-align: right;\">0.015400</td>\n<td style=\"text-align: center;\">SOLU\u00c7\u00c3O</td>\n<td style=\"text-align: center;\">True</td>\n</tr>\n<tr>\n<td style=\"text-align: right;\">2</td>\n<td style=\"text-align: center;\">4\u00d74</td>\n<td style=\"text-align: right;\">102</td>\n<td style=\"text-align: right;\">0.017634</td>\n<td style=\"text-align: center;\">SOLU\u00c7\u00c3O</td>\n<td style=\"text-align: center;\">True</td>\n</tr>\n<tr>\n<td style=\"text-align: right;\">3</td>\n<td style=\"text-align: center;\">9\u00d79</td>\n<td style=\"text-align: right;\">100</td>\n<td style=\"text-align: right;\">0.003314</td>\n<td style=\"text-align: center;\">INFEASIBLE</td>\n<td style=\"text-align: center;\">\u2014</td>\n</tr>\n<tr>\n<td style=\"text-align: right;\">3</td>\n<td style=\"text-align: center;\">9\u00d79</td>\n<td style=\"text-align: right;\">101</td>\n<td style=\"text-align: right;\">0.124140</td>\n<td style=\"text-align: center;\">SOLU\u00c7\u00c3O</td>\n<td style=\"text-align: center;\">True</td>\n</tr>\n<tr>\n<td style=\"text-align: right;\">3</td>\n<td style=\"text-align: center;\">9\u00d79</td>\n<td style=\"text-align: right;\">102</td>\n<td style=\"text-align: right;\">0.003300</td>\n<td style=\"text-align: center;\">INFEASIBLE</td>\n<td style=\"text-align: center;\">\u2014</td>\n</tr>\n<tr>\n<td style=\"text-align: right;\">4</td>\n<td style=\"text-align: center;\">16\u00d716</td>\n<td style=\"text-align: right;\">100</td>\n<td style=\"text-align: right;\">0.802017</td>\n<td style=\"text-align: center;\">SOLU\u00c7\u00c3O</td>\n<td style=\"text-align: center;\">True</td>\n</tr>\n<tr>\n<td style=\"text-align: right;\">4</td>\n<td style=\"text-align: center;\">16\u00d716</td>\n<td style=\"text-align: right;\">101</td>\n<td style=\"text-align: right;\">0.617029</td>\n<td style=\"text-align: center;\">SOLU\u00c7\u00c3O</td>\n<td style=\"text-align: center;\">True</td>\n</tr>\n<tr>\n<td style=\"text-align: right;\">4</td>\n<td style=\"text-align: center;\">16\u00d716</td>\n<td style=\"text-align: right;\">102</td>\n<td style=\"text-align: right;\">0.505290</td>\n<td style=\"text-align: center;\">SOLU\u00c7\u00c3O</td>\n<td style=\"text-align: center;\">True</td>\n</tr>\n</tbody>\n</table>\n<h3 id=\"resumo-por-dimensao\">Resumo por dimens\u00e3o</h3>\n<table>\n<thead>\n<tr>\n<th style=\"text-align: right;\">n</th>\n<th style=\"text-align: center;\">Grelha</th>\n<th style=\"text-align: right;\">Execu\u00e7\u00f5es</th>\n<th style=\"text-align: right;\">M\u00e9dia (s)</th>\n<th style=\"text-align: right;\">M\u00ednimo (s)</th>\n<th style=\"text-align: right;\">M\u00e1ximo (s)</th>\n<th style=\"text-align: right;\">SOLU\u00c7\u00c3O</th>\n<th style=\"text-align: right;\">INFEASIBLE</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td style=\"text-align: right;\">2</td>\n<td style=\"text-align: center;\">4\u00d74</td>\n<td style=\"text-align: right;\">3</td>\n<td style=\"text-align: right;\">0.018316</td>\n<td style=\"text-align: right;\">0.015400</td>\n<td style=\"text-align: right;\">0.021913</td>\n<td style=\"text-align: right;\">3</td>\n<td style=\"text-align: right;\">0</td>\n</tr>\n<tr>\n<td style=\"text-align: right;\">3</td>\n<td style=\"text-align: center;\">9\u00d79</td>\n<td style=\"text-align: right;\">3</td>\n<td style=\"text-align: right;\">0.043585</td>\n<td style=\"text-align: right;\">0.003300</td>\n<td style=\"text-align: right;\">0.124140</td>\n<td style=\"text-align: right;\">1</td>\n<td style=\"text-align: right;\">2</td>\n</tr>\n<tr>\n<td style=\"text-align: right;\">4</td>\n<td style=\"text-align: center;\">16\u00d716</td>\n<td style=\"text-align: right;\">3</td>\n<td style=\"text-align: right;\">0.641445</td>\n<td style=\"text-align: right;\">0.505290</td>\n<td style=\"text-align: right;\">0.802017</td>\n<td style=\"text-align: right;\">3</td>\n<td style=\"text-align: right;\">0</td>\n</tr>\n</tbody>\n</table>\n<h3 id=\"observacoes-dos-dados\">Observa\u00e7\u00f5es dos dados</h3>\n<span class=\"paragraph\">Para <code>n = 2</code>, as tr\u00eas inst\u00e2ncias tiveram solu\u00e7\u00e3o e foram validadas independentemente. Os tempos observados variaram entre 0.015400 s e 0.021913 s.</span>\n<span class=\"paragraph\">Para <code>n = 3</code>, apenas a inst\u00e2ncia com <code>seed = 101</code> teve solu\u00e7\u00e3o, demorando 0.124140 s. As inst\u00e2ncias com <code>seed = 100</code> e <code>seed = 102</code> foram declaradas <code>INFEASIBLE</code> e terminaram em 0.003314 s e 0.003300 s, respetivamente.</span>\n<span class=\"paragraph\">Para <code>n = 4</code>, as tr\u00eas inst\u00e2ncias tiveram solu\u00e7\u00e3o e foram validadas, com tempos entre 0.505290 s e 0.802017 s.</span>\n<h3 id=\"interpretacao\">Interpreta\u00e7\u00e3o</h3>\n<span class=\"paragraph\">A m\u00e9dia obtida para <code>n = 3</code> n\u00e3o deve ser comparada diretamente com as m\u00e9dias de <code>n = 2</code> e <code>n = 4</code>, uma vez que duas das tr\u00eas inst\u00e2ncias foram <code>INFEASIBLE</code> e terminaram muito rapidamente.</span>\n<span class=\"paragraph\">Nas inst\u00e2ncias satisfaz\u00edveis observadas, as execu\u00e7\u00f5es para <code>n = 4</code> foram mais demoradas do que as execu\u00e7\u00f5es satisfaz\u00edveis realizadas para <code>n = 2</code> e <code>n = 3</code>.</span>\n<span class=\"paragraph\">A variabilidade observada entre as execu\u00e7\u00f5es sugere que o tempo de resolu\u00e7\u00e3o pode depender n\u00e3o apenas da dimens\u00e3o da grelha, mas tamb\u00e9m das restri\u00e7\u00f5es concretas introduzidas pelas pistas.</span>\n<span class=\"paragraph\">No entanto, foram utilizadas apenas tr\u00eas sementes por dimens\u00e3o. Estes resultados caracterizam apenas as inst\u00e2ncias efetivamente executadas e n\u00e3o permitem estabelecer conclus\u00f5es gerais sobre a complexidade do problema nem extrapolar o desempenho para dimens\u00f5es n\u00e3o experimentadas.</span></span>"
+            "application/json": "[{\"n\": 2, \"dimensao\": \"4x4\", \"seed\": 100, \"tempo_s\": \"text/plain+float:0.024417500011622906\", \"estado\": \"SOLU\\u00c7\\u00c3O\", \"validada\": true}, {\"n\": 2, \"dimensao\": \"4x4\", \"seed\": 101, \"tempo_s\": \"text/plain+float:0.021687999993446283\", \"estado\": \"SOLU\\u00c7\\u00c3O\", \"validada\": true}, {\"n\": 2, \"dimensao\": \"4x4\", \"seed\": 102, \"tempo_s\": \"text/plain+float:0.018364300005487166\", \"estado\": \"SOLU\\u00c7\\u00c3O\", \"validada\": true}, {\"n\": 3, \"dimensao\": \"9x9\", \"seed\": 100, \"tempo_s\": \"text/plain+float:0.0032533999910810962\", \"estado\": \"INFEASIBLE\", \"validada\": null}, {\"n\": 3, \"dimensao\": \"9x9\", \"seed\": 101, \"tempo_s\": \"text/plain+float:0.11515610000060406\", \"estado\": \"SOLU\\u00c7\\u00c3O\", \"validada\": true}, {\"n\": 3, \"dimensao\": \"9x9\", \"seed\": 102, \"tempo_s\": \"text/plain+float:0.0035428999981377274\", \"estado\": \"INFEASIBLE\", \"validada\": null}, {\"n\": 4, \"dimensao\": \"16x16\", \"seed\": 100, \"tempo_s\": \"text/plain+float:0.6730911999911768\", \"estado\": \"SOLU\\u00c7\\u00c3O\", \"validada\": true}, {\"n\": 4, \"dimensao\": \"16x16\", \"seed\": 101, \"tempo_s\": \"text/plain+float:0.4642415999987861\", \"estado\": \"SOLU\\u00c7\\u00c3O\", \"validada\": true}, {\"n\": 4, \"dimensao\": \"16x16\", \"seed\": 102, \"tempo_s\": \"text/plain+float:0.6604886999994051\", \"estado\": \"SOLU\\u00c7\\u00c3O\", \"validada\": true}]"
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "RESULTADOS INDIVIDUAIS\n-------------------------------------------------------------------------------------\nn=2 | grelha=4x4 | seed=100 | tempo=0.024418 s | estado=SOLU\u00c7\u00c3O | validada=True\nn=2 | grelha=4x4 | seed=101 | tempo=0.021688 s | estado=SOLU\u00c7\u00c3O | validada=True\nn=2 | grelha=4x4 | seed=102 | tempo=0.018364 s | estado=SOLU\u00c7\u00c3O | validada=True\nn=3 | grelha=9x9 | seed=100 | tempo=0.003253 s | estado=INFEASIBLE | validada=None\nn=3 | grelha=9x9 | seed=101 | tempo=0.115156 s | estado=SOLU\u00c7\u00c3O | validada=True\nn=3 | grelha=9x9 | seed=102 | tempo=0.003543 s | estado=INFEASIBLE | validada=None\nn=4 | grelha=16x16 | seed=100 | tempo=0.673091 s | estado=SOLU\u00c7\u00c3O | validada=True\nn=4 | grelha=16x16 | seed=101 | tempo=0.464242 s | estado=SOLU\u00c7\u00c3O | validada=True\nn=4 | grelha=16x16 | seed=102 | tempo=0.660489 s | estado=SOLU\u00c7\u00c3O | validada=True\n\nRESUMO POR DIMENS\u00c3O\n-------------------------------------------------------------------------------------\nn=2 | grelha=4x4 | execu\u00e7\u00f5es=3 | tempo m\u00e9dio=0.021490 s | m\u00ednimo=0.018364 s | m\u00e1ximo=0.024418 s | SOLU\u00c7\u00c3O=3 | INFEASIBLE=0\nn=3 | grelha=9x9 | execu\u00e7\u00f5es=3 | tempo m\u00e9dio=0.040651 s | m\u00ednimo=0.003253 s | m\u00e1ximo=0.115156 s | SOLU\u00c7\u00c3O=1 | INFEASIBLE=2\nn=4 | grelha=16x16 | execu\u00e7\u00f5es=3 | tempo m\u00e9dio=0.599274 s | m\u00ednimo=0.464242 s | m\u00e1ximo=0.673091 s | SOLU\u00c7\u00c3O=3 | INFEASIBLE=0\n",
+          "mimetype": "text/plain"
+        }
+      ]
+    },
+    {
+      "id": "ulZA",
+      "code_hash": "ee18d2f8bde1a2e0ae9a3bc8cd6ca634",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h3 id=\"resultados-e-analise\">Resultados e an\u00e1lise</h3>\n<span class=\"paragraph\">Foi realizada uma experi\u00eancia simples de efici\u00eancia e escala para <code>n = 2</code>, <code>n = 3</code> e <code>n = 4</code>. Em cada dimens\u00e3o foram efetuadas tr\u00eas execu\u00e7\u00f5es, usando <code>k = n</code> e as sementes determin\u00edsticas <code>100</code>, <code>101</code> e <code>102</code>.</span>\n<span class=\"paragraph\">Estas escolhas correspondem a uma decis\u00e3o metodol\u00f3gica do grupo para ilustrar o comportamento da implementa\u00e7\u00e3o e n\u00e3o a um requisito espec\u00edfico do enunciado.</span>\n<span class=\"paragraph\">O tempo foi medido com <code>time.perf_counter()</code> apenas em torno da chamada a <code>resolver_sudoku()</code>. A valida\u00e7\u00e3o da solu\u00e7\u00e3o atrav\u00e9s de <code>validar_sudoku()</code> foi realizada depois da medi\u00e7\u00e3o e, por isso, n\u00e3o est\u00e1 inclu\u00edda nos tempos apresentados.</span>\n<h3 id=\"resultados-observados\">Resultados observados</h3>\n<table>\n<thead>\n<tr>\n<th style=\"text-align: right;\">n</th>\n<th style=\"text-align: center;\">Grelha</th>\n<th style=\"text-align: right;\">Seed</th>\n<th style=\"text-align: right;\">Tempo (s)</th>\n<th style=\"text-align: center;\">Estado</th>\n<th style=\"text-align: center;\">Valida\u00e7\u00e3o</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td style=\"text-align: right;\">2</td>\n<td style=\"text-align: center;\">4\u00d74</td>\n<td style=\"text-align: right;\">100</td>\n<td style=\"text-align: right;\">0.024418</td>\n<td style=\"text-align: center;\">SOLU\u00c7\u00c3O</td>\n<td style=\"text-align: center;\">True</td>\n</tr>\n<tr>\n<td style=\"text-align: right;\">2</td>\n<td style=\"text-align: center;\">4\u00d74</td>\n<td style=\"text-align: right;\">101</td>\n<td style=\"text-align: right;\">0.021688</td>\n<td style=\"text-align: center;\">SOLU\u00c7\u00c3O</td>\n<td style=\"text-align: center;\">True</td>\n</tr>\n<tr>\n<td style=\"text-align: right;\">2</td>\n<td style=\"text-align: center;\">4\u00d74</td>\n<td style=\"text-align: right;\">102</td>\n<td style=\"text-align: right;\">0.018364</td>\n<td style=\"text-align: center;\">SOLU\u00c7\u00c3O</td>\n<td style=\"text-align: center;\">True</td>\n</tr>\n<tr>\n<td style=\"text-align: right;\">3</td>\n<td style=\"text-align: center;\">9\u00d79</td>\n<td style=\"text-align: right;\">100</td>\n<td style=\"text-align: right;\">0.003253</td>\n<td style=\"text-align: center;\">INFEASIBLE</td>\n<td style=\"text-align: center;\">\u2014</td>\n</tr>\n<tr>\n<td style=\"text-align: right;\">3</td>\n<td style=\"text-align: center;\">9\u00d79</td>\n<td style=\"text-align: right;\">101</td>\n<td style=\"text-align: right;\">0.115156</td>\n<td style=\"text-align: center;\">SOLU\u00c7\u00c3O</td>\n<td style=\"text-align: center;\">True</td>\n</tr>\n<tr>\n<td style=\"text-align: right;\">3</td>\n<td style=\"text-align: center;\">9\u00d79</td>\n<td style=\"text-align: right;\">102</td>\n<td style=\"text-align: right;\">0.003543</td>\n<td style=\"text-align: center;\">INFEASIBLE</td>\n<td style=\"text-align: center;\">\u2014</td>\n</tr>\n<tr>\n<td style=\"text-align: right;\">4</td>\n<td style=\"text-align: center;\">16\u00d716</td>\n<td style=\"text-align: right;\">100</td>\n<td style=\"text-align: right;\">0.673091</td>\n<td style=\"text-align: center;\">SOLU\u00c7\u00c3O</td>\n<td style=\"text-align: center;\">True</td>\n</tr>\n<tr>\n<td style=\"text-align: right;\">4</td>\n<td style=\"text-align: center;\">16\u00d716</td>\n<td style=\"text-align: right;\">101</td>\n<td style=\"text-align: right;\">0.464242</td>\n<td style=\"text-align: center;\">SOLU\u00c7\u00c3O</td>\n<td style=\"text-align: center;\">True</td>\n</tr>\n<tr>\n<td style=\"text-align: right;\">4</td>\n<td style=\"text-align: center;\">16\u00d716</td>\n<td style=\"text-align: right;\">102</td>\n<td style=\"text-align: right;\">0.660489</td>\n<td style=\"text-align: center;\">SOLU\u00c7\u00c3O</td>\n<td style=\"text-align: center;\">True</td>\n</tr>\n</tbody>\n</table>\n<h3 id=\"resumo-por-dimensao\">Resumo por dimens\u00e3o</h3>\n<table>\n<thead>\n<tr>\n<th style=\"text-align: right;\">n</th>\n<th style=\"text-align: center;\">Grelha</th>\n<th style=\"text-align: right;\">Execu\u00e7\u00f5es</th>\n<th style=\"text-align: right;\">M\u00e9dia (s)</th>\n<th style=\"text-align: right;\">M\u00ednimo (s)</th>\n<th style=\"text-align: right;\">M\u00e1ximo (s)</th>\n<th style=\"text-align: right;\">SOLU\u00c7\u00c3O</th>\n<th style=\"text-align: right;\">INFEASIBLE</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td style=\"text-align: right;\">2</td>\n<td style=\"text-align: center;\">4\u00d74</td>\n<td style=\"text-align: right;\">3</td>\n<td style=\"text-align: right;\">0.021490</td>\n<td style=\"text-align: right;\">0.018364</td>\n<td style=\"text-align: right;\">0.024418</td>\n<td style=\"text-align: right;\">3</td>\n<td style=\"text-align: right;\">0</td>\n</tr>\n<tr>\n<td style=\"text-align: right;\">3</td>\n<td style=\"text-align: center;\">9\u00d79</td>\n<td style=\"text-align: right;\">3</td>\n<td style=\"text-align: right;\">0.040651</td>\n<td style=\"text-align: right;\">0.003253</td>\n<td style=\"text-align: right;\">0.115156</td>\n<td style=\"text-align: right;\">1</td>\n<td style=\"text-align: right;\">2</td>\n</tr>\n<tr>\n<td style=\"text-align: right;\">4</td>\n<td style=\"text-align: center;\">16\u00d716</td>\n<td style=\"text-align: right;\">3</td>\n<td style=\"text-align: right;\">0.599274</td>\n<td style=\"text-align: right;\">0.464242</td>\n<td style=\"text-align: right;\">0.673091</td>\n<td style=\"text-align: right;\">3</td>\n<td style=\"text-align: right;\">0</td>\n</tr>\n</tbody>\n</table>\n<h3 id=\"observacoes-dos-dados\">Observa\u00e7\u00f5es dos dados</h3>\n<span class=\"paragraph\">Para <code>n = 2</code>, as tr\u00eas inst\u00e2ncias tiveram solu\u00e7\u00e3o e foram validadas independentemente. Os tempos observados variaram entre 0.018364 s e 0.024418 s.</span>\n<span class=\"paragraph\">Para <code>n = 3</code>, apenas a inst\u00e2ncia com <code>seed = 101</code> teve solu\u00e7\u00e3o, demorando 0.115156 s. As inst\u00e2ncias com <code>seed = 100</code> e <code>seed = 102</code> foram declaradas <code>INFEASIBLE</code> e terminaram em 0.003253 s e 0.003543 s, respetivamente.</span>\n<span class=\"paragraph\">Para <code>n = 4</code>, as tr\u00eas inst\u00e2ncias tiveram solu\u00e7\u00e3o e foram validadas, com tempos entre 0.464242 s e 0.673091 s.</span>\n<h3 id=\"interpretacao\">Interpreta\u00e7\u00e3o</h3>\n<span class=\"paragraph\">A m\u00e9dia obtida para <code>n = 3</code> n\u00e3o deve ser comparada diretamente com as m\u00e9dias de <code>n = 2</code> e <code>n = 4</code>, uma vez que duas das tr\u00eas inst\u00e2ncias foram <code>INFEASIBLE</code> e terminaram muito rapidamente.</span>\n<span class=\"paragraph\">Nas inst\u00e2ncias satisfaz\u00edveis observadas, as execu\u00e7\u00f5es para <code>n = 4</code> foram mais demoradas do que as execu\u00e7\u00f5es satisfaz\u00edveis realizadas para <code>n = 2</code> e <code>n = 3</code>.</span>\n<span class=\"paragraph\">A variabilidade observada entre as execu\u00e7\u00f5es sugere que o tempo de resolu\u00e7\u00e3o pode depender n\u00e3o apenas da dimens\u00e3o da grelha, mas tamb\u00e9m das restri\u00e7\u00f5es concretas introduzidas pelas pistas.</span>\n<span class=\"paragraph\">No entanto, foram utilizadas apenas tr\u00eas sementes por dimens\u00e3o. Estes resultados caracterizam apenas as inst\u00e2ncias efetivamente executadas e n\u00e3o permitem estabelecer conclus\u00f5es gerais sobre a complexidade do problema nem extrapolar o desempenho para dimens\u00f5es n\u00e3o experimentadas.</span></span>"
           }
         }
       ],
@@ -215,8 +376,22 @@
     {
       "id": "ZBYS",
       "code_hash": "37f053b9a19c8cfc60b2962a3053983c",
-      "outputs": [],
-      "console": []
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "AMBIENTE DE EXECU\u00c7\u00c3O\n--------------------------------------------------\nPython: 3.14.7 | packaged by Anaconda, Inc. | (main, Aug 14 2026, 10:12:46) [MSC v.1942 64 bit (AMD64)]\nMarimo: 0.25.0\nOR-Tools: 9.15.6755\n",
+          "mimetype": "text/plain"
+        }
+      ]
     },
     {
       "id": "aLJB",
@@ -233,12 +408,12 @@
     },
     {
       "id": "nHfw",
-      "code_hash": "c2ce8117a32977f52e39421d34bf097a",
+      "code_hash": "429a9b4de351decbade693bcf12ece57",
       "outputs": [
         {
           "type": "data",
           "data": {
-            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"utilizacao-e-contribuicao-da-llm\">Utiliza\u00e7\u00e3o e contribui\u00e7\u00e3o da LLM</h2>\n<span class=\"paragraph\">Foram utilizadas ferramentas LLM como apoio \u00e0 interpreta\u00e7\u00e3o dos requisitos, formaliza\u00e7\u00e3o, implementa\u00e7\u00e3o, cria\u00e7\u00e3o de testes, an\u00e1lise dos resultados e organiza\u00e7\u00e3o da documenta\u00e7\u00e3o.</span>\n<span class=\"paragraph\">As componentes substanciais propostas com apoio da LLM encontram-se identificadas atrav\u00e9s de coment\u00e1rios no c\u00f3digo e s\u00e3o resumidas na tabela seguinte.</span>\n<table>\n<thead>\n<tr>\n<th>Componente</th>\n<th>Contribui\u00e7\u00e3o da LLM</th>\n<th>Contribui\u00e7\u00e3o do grupo</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Interpreta\u00e7\u00e3o e formaliza\u00e7\u00e3o de R1\u2013R6</td>\n<td>Organiza\u00e7\u00e3o dos requisitos, defini\u00e7\u00e3o das vari\u00e1veis, restri\u00e7\u00f5es e correspond\u00eancia entre requisitos e implementa\u00e7\u00e3o</td>\n<td>Revis\u00e3o das propostas, discuss\u00e3o das decis\u00f5es e aprova\u00e7\u00e3o da modela\u00e7\u00e3o</td>\n</tr>\n<tr>\n<td><code>box</code></td>\n<td>Proposta inicial da implementa\u00e7\u00e3o e dos testes de R1</td>\n<td>Defini\u00e7\u00e3o das decis\u00f5es de implementa\u00e7\u00e3o, integra\u00e7\u00e3o no Marimo e execu\u00e7\u00e3o dos testes</td>\n</tr>\n<tr>\n<td><code>cube</code> e <code>path</code></td>\n<td>Proposta inicial das implementa\u00e7\u00f5es e baterias de testes de R2 e R3</td>\n<td>Revis\u00e3o, integra\u00e7\u00e3o e execu\u00e7\u00e3o dos testes</td>\n</tr>\n<tr>\n<td>Gera\u00e7\u00e3o de pistas</td>\n<td>Proposta de <code>gerar_pistas()</code> e testes de R4</td>\n<td>Decis\u00f5es sobre reprodu\u00e7\u00e3o por seed e comportamento perante inviabilidade; integra\u00e7\u00e3o e execu\u00e7\u00e3o</td>\n</tr>\n<tr>\n<td>Modelo CP-SAT</td>\n<td>Formaliza\u00e7\u00e3o e proposta da implementa\u00e7\u00e3o de <code>sudoku_csp</code>, <code>add_groups()</code> e <code>solve()</code></td>\n<td>Escolha e confirma\u00e7\u00e3o do OR-Tools CP-SAT, integra\u00e7\u00e3o, configura\u00e7\u00e3o do ambiente e execu\u00e7\u00e3o dos testes</td>\n</tr>\n<tr>\n<td>Constru\u00e7\u00e3o do Sudoku</td>\n<td>Proposta de <code>resolver_sudoku()</code></td>\n<td>Integra\u00e7\u00e3o no notebook e execu\u00e7\u00e3o do fluxo completo</td>\n</tr>\n<tr>\n<td>Valida\u00e7\u00e3o independente</td>\n<td>Proposta de <code>validar_sudoku()</code></td>\n<td>Execu\u00e7\u00e3o da valida\u00e7\u00e3o sobre as solu\u00e7\u00f5es reais e teste negativo com solu\u00e7\u00e3o deliberadamente corrompida</td>\n</tr>\n<tr>\n<td>Testes adicionais</td>\n<td>Proposta dos testes limite <code>k = 0</code>, <code>k = n^4</code> e teste negativo do validador</td>\n<td>Execu\u00e7\u00e3o e confirma\u00e7\u00e3o dos resultados reais</td>\n</tr>\n<tr>\n<td>Efici\u00eancia e escala</td>\n<td>Proposta da metodologia e do c\u00f3digo de medi\u00e7\u00e3o com <code>time.perf_counter()</code></td>\n<td>Escolha dos par\u00e2metros da experi\u00eancia, execu\u00e7\u00e3o das nove inst\u00e2ncias e fornecimento dos tempos reais</td>\n</tr>\n<tr>\n<td>An\u00e1lise e documenta\u00e7\u00e3o</td>\n<td>Apoio \u00e0 organiza\u00e7\u00e3o da an\u00e1lise de desempenho, limita\u00e7\u00f5es, reprodutibilidade, rastreabilidade e conclus\u00e3o</td>\n<td>Revis\u00e3o final do conte\u00fado e responsabilidade pelos resultados efetivamente apresentados</td>\n</tr>\n</tbody>\n</table>\n<span class=\"paragraph\">O grupo integrou o c\u00f3digo no notebook Marimo, tomou as decis\u00f5es de implementa\u00e7\u00e3o, resolveu os problemas de configura\u00e7\u00e3o do ambiente e de organiza\u00e7\u00e3o das c\u00e9lulas, executou todos os testes e experi\u00eancias e forneceu os resultados reais utilizados neste relat\u00f3rio.</span>\n<h3 id=\"dialogos-llm\">Di\u00e1logos LLM</h3>\n<span class=\"paragraph\">Di\u00e1logo principal utilizado no desenvolvimento do TP1.2 \u2014 Sudoku:</span>\n<span class=\"paragraph\"><strong><a href=\"https://chatgpt.com/share/6ac12d98-2ef8-83ed-969a-449c71987c2c\" rel=\"noopener noreferrer\" target=\"_blank\">https://chatgpt.com/share/6ac12d98-2ef8-83ed-969a-449c71987c2c</a></strong></span></span>"
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"utilizacao-e-contribuicao-da-llm\">Utiliza\u00e7\u00e3o e contribui\u00e7\u00e3o da LLM</h2>\n<span class=\"paragraph\">Foram utilizadas ferramentas LLM como apoio \u00e0 interpreta\u00e7\u00e3o dos requisitos, formaliza\u00e7\u00e3o, implementa\u00e7\u00e3o, cria\u00e7\u00e3o de testes, an\u00e1lise dos resultados e organiza\u00e7\u00e3o da documenta\u00e7\u00e3o.</span>\n<span class=\"paragraph\">As componentes substanciais propostas com apoio da LLM encontram-se identificadas atrav\u00e9s de coment\u00e1rios no c\u00f3digo e s\u00e3o resumidas na tabela seguinte.</span>\n<table>\n<thead>\n<tr>\n<th>Componente</th>\n<th>Contribui\u00e7\u00e3o da LLM</th>\n<th>Contribui\u00e7\u00e3o do grupo</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Interpreta\u00e7\u00e3o e formaliza\u00e7\u00e3o de R1\u2013R6</td>\n<td>Organiza\u00e7\u00e3o dos requisitos, defini\u00e7\u00e3o das vari\u00e1veis, restri\u00e7\u00f5es e correspond\u00eancia entre requisitos e implementa\u00e7\u00e3o</td>\n<td>Revis\u00e3o das propostas, discuss\u00e3o das decis\u00f5es e aprova\u00e7\u00e3o da modela\u00e7\u00e3o</td>\n</tr>\n<tr>\n<td><code>box</code></td>\n<td>Proposta inicial da implementa\u00e7\u00e3o e dos testes de R1</td>\n<td>Defini\u00e7\u00e3o das decis\u00f5es de implementa\u00e7\u00e3o, integra\u00e7\u00e3o no Marimo e execu\u00e7\u00e3o dos testes</td>\n</tr>\n<tr>\n<td><code>cube</code> e <code>path</code></td>\n<td>Proposta inicial das implementa\u00e7\u00f5es e baterias de testes de R2 e R3</td>\n<td>Revis\u00e3o, integra\u00e7\u00e3o e execu\u00e7\u00e3o dos testes</td>\n</tr>\n<tr>\n<td>Gera\u00e7\u00e3o de pistas</td>\n<td>Proposta de <code>gerar_pistas()</code> e testes de R4</td>\n<td>Decis\u00f5es sobre reprodu\u00e7\u00e3o por seed e comportamento perante inviabilidade; integra\u00e7\u00e3o e execu\u00e7\u00e3o</td>\n</tr>\n<tr>\n<td>Modelo CP-SAT</td>\n<td>Formaliza\u00e7\u00e3o e proposta da implementa\u00e7\u00e3o de <code>sudoku_csp</code>, <code>add_groups()</code> e <code>solve()</code></td>\n<td>Escolha e confirma\u00e7\u00e3o do OR-Tools CP-SAT, integra\u00e7\u00e3o, configura\u00e7\u00e3o do ambiente e execu\u00e7\u00e3o dos testes</td>\n</tr>\n<tr>\n<td>Constru\u00e7\u00e3o do Sudoku</td>\n<td>Proposta de <code>resolver_sudoku()</code></td>\n<td>Integra\u00e7\u00e3o no notebook e execu\u00e7\u00e3o do fluxo completo</td>\n</tr>\n<tr>\n<td>Valida\u00e7\u00e3o independente</td>\n<td>Proposta de <code>validar_sudoku()</code></td>\n<td>Execu\u00e7\u00e3o da valida\u00e7\u00e3o sobre as solu\u00e7\u00f5es reais e teste negativo com solu\u00e7\u00e3o deliberadamente corrompida</td>\n</tr>\n<tr>\n<td>Testes adicionais</td>\n<td>Proposta dos testes limite <code>k = 0</code>, <code>k = n^4</code> e teste negativo do validador</td>\n<td>Execu\u00e7\u00e3o e confirma\u00e7\u00e3o dos resultados reais</td>\n</tr>\n<tr>\n<td>Efici\u00eancia e escala</td>\n<td>Proposta da metodologia e do c\u00f3digo de medi\u00e7\u00e3o com <code>time.perf_counter()</code></td>\n<td>Escolha dos par\u00e2metros da experi\u00eancia, execu\u00e7\u00e3o das nove inst\u00e2ncias e fornecimento dos tempos reais</td>\n</tr>\n<tr>\n<td>An\u00e1lise e documenta\u00e7\u00e3o</td>\n<td>Apoio \u00e0 organiza\u00e7\u00e3o da an\u00e1lise de desempenho, limita\u00e7\u00f5es, reprodutibilidade, rastreabilidade e conclus\u00e3o</td>\n<td>Revis\u00e3o final do conte\u00fado e responsabilidade pelos resultados efetivamente apresentados</td>\n</tr>\n</tbody>\n</table>\n<span class=\"paragraph\">O grupo integrou o c\u00f3digo no notebook Marimo, tomou as decis\u00f5es de implementa\u00e7\u00e3o, resolveu os problemas de configura\u00e7\u00e3o do ambiente e de organiza\u00e7\u00e3o das c\u00e9lulas, executou todos os testes e experi\u00eancias e forneceu os resultados reais utilizados neste relat\u00f3rio.</span>\n<h3 id=\"dialogos-llm\">Di\u00e1logos LLM</h3>\n<span class=\"paragraph\">Di\u00e1logo principal utilizado no desenvolvimento do TP1.2 \u2014 Sudoku:</span>\n<span class=\"paragraph\"><a href=\"https://chatgpt.com/share/6ac12d98-2ef8-83ed-969a-449c71987c2c\" rel=\"noopener noreferrer\" target=\"_blank\">Di\u00e1logo principal TP1.2 \u2014 Sudoku</a></span></span>"
           }
         }
       ],
@@ -246,12 +421,12 @@
     },
     {
       "id": "xXTn",
-      "code_hash": "587ddbb6a040a1994da3778d84fa4b53",
+      "code_hash": "263401e3629425cc9a29acc3846d8318",
       "outputs": [
         {
           "type": "data",
           "data": {
-            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"conclusao\">Conclus\u00e3o</h2>\n<span class=\"paragraph\">Neste exerc\u00edcio foi modelado um Sudoku gen\u00e9rico <marimo-tex class=\"arithmatex\">||(n^2 \\times n^2||)</marimo-tex> como um problema de satisfa\u00e7\u00e3o de restri\u00e7\u00f5es.</span>\n<span class=\"paragraph\">A classe <code>box</code> fornece a abstra\u00e7\u00e3o gen\u00e9rica para grupos de c\u00e9lulas, enquanto <code>path</code> e <code>cube</code> permitem construir linhas, colunas e blocos. O modelo implementado com OR-Tools CP-SAT associa uma vari\u00e1vel inteira a cada c\u00e9lula e aplica genericamente restri\u00e7\u00f5es <code>AllDifferent</code> e igualdades correspondentes aos valores fixos.</span>\n<span class=\"paragraph\">Os requisitos R1\u2013R6 foram implementados e testados. O fluxo completo foi executado e validado para <code>n = 2</code> e <code>n = 3</code>, e a experi\u00eancia de efici\u00eancia e escala incluiu tamb\u00e9m <code>n = 4</code>.</span>\n<span class=\"paragraph\">A implementa\u00e7\u00e3o \u00e9 parametrizada em <code>n</code> e n\u00e3o cont\u00e9m qualquer caso especial para uma grelha 9\u00d79.</span></span>"
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><div style=\"page-break-before: always;\"></div>\n\n<h2 id=\"conclusao\">Conclus\u00e3o</h2>\n<span class=\"paragraph\">Neste exerc\u00edcio foi modelado um Sudoku gen\u00e9rico <marimo-tex class=\"arithmatex\">||(n^2 \\times n^2||)</marimo-tex> como um problema de satisfa\u00e7\u00e3o de restri\u00e7\u00f5es.</span>\n<span class=\"paragraph\">A classe <code>box</code> fornece a abstra\u00e7\u00e3o gen\u00e9rica para grupos de c\u00e9lulas, enquanto <code>path</code> e <code>cube</code> permitem construir linhas, colunas e blocos. O modelo implementado com OR-Tools CP-SAT associa uma vari\u00e1vel inteira a cada c\u00e9lula e aplica genericamente restri\u00e7\u00f5es <code>AllDifferent</code> e igualdades correspondentes aos valores fixos.</span>\n<span class=\"paragraph\">Os requisitos R1\u2013R6 foram implementados e testados. O fluxo completo foi executado e validado para <code>n = 2</code> e <code>n = 3</code>, e a experi\u00eancia de efici\u00eancia e escala incluiu tamb\u00e9m <code>n = 4</code>.</span>\n<span class=\"paragraph\">A implementa\u00e7\u00e3o \u00e9 parametrizada em <code>n</code> e n\u00e3o cont\u00e9m qualquer caso especial para uma grelha 9\u00d79.</span></span>"
           }
         }
       ],
